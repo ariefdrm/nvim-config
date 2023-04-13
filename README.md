@@ -148,7 +148,7 @@ sudo pacman -S neovim
 ```
 
 ```
-git clone https://github.com/pojokcodeid/core-config-lazy.git ~/.config/nvim
+git clone https://github.com/ariefdrm/nvim-config.git ~/.config/nvim
 ```
 
 ## Panduam Windows 
@@ -165,5 +165,5 @@ git clone https://github.com/pojokcodeid/core-config-lazy.git ~/.config/nvim
 9. Powershell (windows) https://apps.microsoft.com/store/detail/powershell/9MZ1SNWT0N5D?hl=en-id&gl=id
 
 ```
-git clone https://github.com/pojokcodeid/core-config-lazy.git "$env:LOCALAPPDATA\nvim"
+git clone https://github.com/ariefdrm/nvim-config.git "$env:LOCALAPPDATA\nvim"
 ```
