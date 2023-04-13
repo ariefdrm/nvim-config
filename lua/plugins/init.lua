@@ -1,7 +1,7 @@
 return {
-  	-- core plugins (penyedia library neovim lua)
+	-- core plugins (penyedia library neovim lua)
 	{ "nvim-lua/plenary.nvim", event = "VeryLazy" },
-  -- color scheme
+	-- color scheme
 	{
 		"folke/tokyonight.nvim",
 		lazy = false, -- make sure we load this during startup if it is your main colorscheme
@@ -11,7 +11,7 @@ return {
 			require("config.colorscheme")
 		end,
 	},
-  -- programming
+	-- programming
 	-- coloring
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -53,7 +53,7 @@ return {
 			require("config.cmp")
 		end,
 	},
-  -- snippets
+	-- snippets
 	{
 		"L3MON4D3/LuaSnip",
 		dependencies = {
@@ -115,8 +115,17 @@ return {
 		dependencies = "jose-elias-alvarez/null-ls.nvim",
 		event = "BufRead",
 		opts = function()
-	  	require("config.mason-null-ls")
+			require("config.mason-null-ls")
 		end,
 	},
 	{ "williamboman/nvim-lsp-installer", event = "VeryLazy" },
+	-- auto pairs
+	{
+		"windwp/nvim-autopairs",
+		dependencies = "hrsh7th/nvim-cmp",
+		event = "VeryLazy",
+		init = function()
+			require("config.autopairs")
+		end,
+	},
 }
