@@ -101,5 +101,22 @@ return {
 			end, { "lspconfig", "null-ls" })
 		end,
 	},
-  
+	-- for formater linter
+	{
+		"jose-elias-alvarez/null-ls.nvim",
+		event = "VeryLazy",
+	},
+	{
+		"RRethy/vim-illuminate",
+		event = "VeryLazy",
+	},
+	{
+		"jayp0521/mason-null-ls.nvim",
+		dependencies = "jose-elias-alvarez/null-ls.nvim",
+		event = "BufRead",
+		opts = function()
+	  	require("config.mason-null-ls")
+		end,
+	},
+	{ "williamboman/nvim-lsp-installer", event = "VeryLazy" },
 }
