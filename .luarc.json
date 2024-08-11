@@ -1,0 +1,10 @@
+{
+    "diagnostics.globals": [
+        "vim",
+        "opts",
+        "config"
+    ],
+    "diagnostics.disable": [
+        "redundant-value"
+    ]
+}
