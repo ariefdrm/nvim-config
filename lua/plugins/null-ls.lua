@@ -7,7 +7,7 @@ return {
 			sources = {
                 -- add new null-ls.bultins.--- (if new language)
 				null_ls.builtins.formatting.stylua,
-				null_ls.builtins.completion.spell,
+				null_ls.builtins.completion.lua_ls,
 			},
 		})
 
