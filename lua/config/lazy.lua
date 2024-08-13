@@ -26,6 +26,8 @@ require("lazy").setup({
   spec = {
     -- import your plugins
     { import = "plugins" },
+    -- lazyVim
+    {"LazyVim/LazyVim"}
   },
   -- automatically check for plugin updates
   checker = { enabled = true },

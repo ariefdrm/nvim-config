@@ -5,9 +5,10 @@ return {
 
 		null_ls.setup({
 			sources = {
-                -- add new null-ls.bultins.--- (if new language)
+				-- add new null-ls.bultins.--- (if new language)
 				null_ls.builtins.formatting.stylua,
-				null_ls.builtins.completion.lua_ls,
+				null_ls.builtins.formatting.clang_format,
+				-- null_ls.builtins.diagnostics.cpplint,
 			},
 		})
 
