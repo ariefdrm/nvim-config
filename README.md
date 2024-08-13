@@ -30,6 +30,21 @@ Install my-project with npm
     git clone https://github.com/ariefdrm/neovim-first-own-config.git $env:LOCALAPPDATA\nvim
 ```
 
+- Linux
+```bash
+# required
+   mv ~/.config/nvim{,.bak}
+   
+   # optional but recommended
+   mv ~/.local/share/nvim{,.bak}
+   mv ~/.local/state/nvim{,.bak}
+   mv ~/.cache/nvim{,.bak}
+```
+
+```bash
+  git clone https://github.com/LazyVim/starter ~/.config/nvim
+```
+
 - Start Neovim 
 ```bash
     nvim
