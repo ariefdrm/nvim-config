@@ -27,3 +27,6 @@ keymap('n', '<leader>a', 'ggVG', opts)  -- Select all content in the file
 keymap('n', '<leader>q', ':q<CR>', opts)  -- Quit
 keymap('n', '<leader>x', ':x<CR>', opts)  -- Save and quit
 keymap('n', '<leader>c', ':bd<CR>', opts)  -- Close current buffer
+
+
+

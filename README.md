@@ -10,6 +10,7 @@ My first own config for neovim from scratch.
  - Git >= 2.19.0 (for partial clones support)
  - a Nerd Font(v3.0 or greater) (optional, but needed to display some icons)
  - a C compiler for nvim-treesitter.
+ - ripgrep for telescope plugins.
 
 ## Installation
 
@@ -27,12 +28,14 @@ Install my-project with npm
 - Clone the project
 
 ```bash
-    git clone https://github.com/ariefdrm/neovim-first-own-config.git $env:LOCALAPPDATA\nvim
+    git clone https://github.com/ariefdrm/nvim-config.git $env:LOCALAPPDATA\nvim
 ```
 
-- Linux
+### Linux
+
+- create backup for old config
 ```bash
-# required
+    # required
    mv ~/.config/nvim{,.bak}
    
    # optional but recommended
@@ -41,6 +44,7 @@ Install my-project with npm
    mv ~/.cache/nvim{,.bak}
 ```
 
+- Git clone github repo
 ```bash
   git clone https://github.com/LazyVim/starter ~/.config/nvim
 ```

@@ -6,6 +6,7 @@
         "dap"
     ],
     "diagnostics.disable": [
-        "redundant-value"
+        "redundant-value",
+        "undefined-global"
     ]
 }
