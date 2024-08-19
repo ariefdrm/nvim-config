@@ -46,7 +46,7 @@ Install my-project with npm
 
 - Git clone github repo
 ```bash
-  git clone https://github.com/LazyVim/starter ~/.config/nvim
+  git clone https://github.com/ariefdrm/nvim-config.git ~/.config/nvim
 ```
 
 - Start Neovim 
