@@ -14,7 +14,8 @@ keymap('n', '<C-k>', '<C-w>k', opts)  -- Move to the window above
 keymap('n', '<C-l>', '<C-w>l', opts)  -- Move to the right window
 
 -- Save file
-keymap('n', '<leader>w', ':w<CR>', opts)  -- Save the current file
+keymap('n', '<C-s>', ':w<CR>', opts)  -- Save the current file
+keymap('n', '<C-S>', ':wa<CR>', opts) -- save all open buffers / all open files
 
 -- Copy-paste
 keymap('v', '<leader>y', '"+y', opts)  -- Copy to system clipboard
@@ -25,8 +26,10 @@ keymap('n', '<leader>a', 'ggVG', opts)  -- Select all content in the file
 
 -- Additional useful keymaps
 keymap('n', '<leader>q', ':q<CR>', opts)  -- Quit
-keymap('n', '<leader>x', ':x<CR>', opts)  -- Save and quit
+keymap('n', '<leader>x', ':xa<CR>', opts)  -- Save and quit
 keymap('n', '<leader>c', ':bd<CR>', opts)  -- Close current buffer
+
+
 
 
 

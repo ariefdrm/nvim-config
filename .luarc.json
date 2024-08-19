@@ -3,7 +3,8 @@
         "vim",
         "opts",
         "config",
-        "dap"
+        "dap",
+        "async"
     ],
     "diagnostics.disable": [
         "redundant-value",

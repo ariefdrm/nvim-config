@@ -59,4 +59,3 @@ vim.opt.fileencoding = "utf-8"
 vim.opt.showmode = false
 
 
-

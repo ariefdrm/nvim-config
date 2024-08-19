@@ -11,7 +11,6 @@ return {
 		config = function()
 			local dap = require("dap")
 			local dapui = require("dapui")
-
 			require("dapui").setup()
 
 			-- dap ui config
@@ -28,7 +27,7 @@ return {
 				dapui.close()
 			end
 
-			--
+			-- configurations dap/debugger  for c/c++/rust
 			dap.adapters.codelldb = {
 				type = "server",
 				port = "${port}",
@@ -38,7 +37,7 @@ return {
 					args = { "--port", "${port}" },
 
 					-- On windows you may have to uncomment this:
-					-- detached = false,
+					detached = false,
 				},
 			}
 			dap.configurations.cpp = {
