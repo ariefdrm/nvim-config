@@ -1,7 +1,7 @@
 return {
      "folke/tokyonight.nvim",
-      lazy = false,
-      priority = 100,
+      lazy = true,
+      priority = 0,
       opts = {},
         config = function()
             vim.cmd[[colorscheme tokyonight]]

@@ -9,7 +9,7 @@ return {
 	},
 	config = function()
 		-- keympaping for neotree
-		vim.g.mapleader = " " 
+		vim.g.mapleader = " "
         vim.keymap.set("n", "<C-e>", ":Neotree filesystem reveal left<CR>", {})
 	end,
 }
