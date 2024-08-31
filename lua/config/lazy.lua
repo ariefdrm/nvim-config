@@ -29,9 +29,6 @@ require("lazy").setup({
 		-- lazyVim
 		{
 			"LazyVim/LazyVim",
-			--[[ config = function()
-				require("lazy").setup({})
-			end, ]]
 		},
 	},
 	-- automatically check for plugin updates

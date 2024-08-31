@@ -9,7 +9,7 @@ return {
 			padding = true,
 			---Whether the cursor should stay at its position
 			sticky = true,
-			---Lines to be ignored while (un)comment
+			-- -Lines to be ignored while (un)comment
 			ignore = nil,
 			---LHS of toggle mappings in NORMAL mode
 			toggler = {
