@@ -24,6 +24,7 @@ return {
 					"tsserver",
 					"html",
 					"omnisharp",
+					"cssls",
 				},
 			})
 		end,
@@ -70,6 +71,11 @@ return {
 
 			-- C# lspconfig
 			lspconfig.csharp_ls.setup({
+				capabilities = capabilities,
+			})
+
+			-- css lspconfig
+			lspconfig.cssls.setup({
 				capabilities = capabilities,
 			})
 
