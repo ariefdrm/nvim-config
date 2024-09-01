@@ -1,4 +1,4 @@
--- lua/options.lua
+-- lua/config/options.lua
 
 -- Set leader key to space
 vim.g.mapleader = " "

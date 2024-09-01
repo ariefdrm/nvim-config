@@ -4,6 +4,7 @@ return {
 		tag = "0.1.8",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
+			"ibhagwan/fzf-lua",
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		}, -- telescope dependency
 		config = function()
@@ -30,7 +31,7 @@ return {
 			})
 
 			-- Set leader key to space
-			vim.g.mapleader = " "
+			-- vim.g.mapleader = " "
 
 			vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
 			vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
