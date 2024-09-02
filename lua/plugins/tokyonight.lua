@@ -19,7 +19,6 @@ return {
 				},
 			},
 		})
-		require("tokyonight").setup({})
 		-- set the colorscheme
 		vim.cmd([[colorscheme tokyonight-storm]])
 	end,
