@@ -24,7 +24,7 @@ vim.opt.termguicolors = true -- Enable 24-bit RGB colors
 vim.opt.cursorline = true -- Highlight the current line
 vim.opt.splitright = true -- Vertical splits will be to the right
 vim.opt.splitbelow = true -- Horizontal splits will be below
-vim.opt.clipboard = "unnamedplus" -- Use system clipboard
+vim.opt.clipboard = "unnamedplus" --- Use system clipboard
 vim.opt.showmatch = true --
 
 -- Enable mouse support
