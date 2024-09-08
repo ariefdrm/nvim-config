@@ -15,7 +15,7 @@ return {
 		"echasnovski/mini.indentscope",
 		version = false,
 		dependencies = {
-			"echasnovski/mini.nvim",
+			-- "echasnovski/mini.nvim",
 		},
 		config = function()
 			require("mini.indentscope").setup({
