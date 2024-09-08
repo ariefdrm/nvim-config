@@ -24,18 +24,9 @@ return {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			require("tokyonight").setup({
-				style = "night", -- The theme comes in three styles, `storm`, a darker variant `night` and `day`
-				light_style = "day", -- Configure light set when use colorscheme to light
-				transparent = "true", -- Enable this to disable setting the background color
-				terminal = "true",
-				styles = {
-					comments = { italic = true },
-					keywords = { italic = true },
-				},
-			})
+			require("tokyonight").setup({})
 			-- set the colorscheme
-			vim.cmd([[colorscheme tokyonight]])
+			vim.cmd([[colorscheme tokyonight-storm]])
 		end,
 	},
 	-- Catppuccin
@@ -53,7 +44,7 @@ return {
 					dark = "mocha",
 				},
 				transparent_background = false, -- Disable setting background
-				term_colors = true, -- Set terminal colors
+				term_colors = false, -- Set terminal colors
 				styles = {
 					comments = { "italic" },
 					conditionals = { "italic" },

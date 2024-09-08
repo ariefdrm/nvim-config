@@ -1,12 +1,15 @@
+-- Lsp server config
 return {
-	-- lsp server config
 	{
-		"williamboman/mason.nvim", -- Mason nvim
+		-- Mason nvim
+		"williamboman/mason.nvim",
 		dependencies = {
 			"williamboman/mason-lspconfig.nvim", -- mason lsp config
+			"WhoIsSethDaniel/mason-tool-installer.nvim",
 		},
 		lazy = lazy,
 		config = function()
+			-- mason configuration
 			require("mason").setup({
 				ui = {
 					icons = {
@@ -16,15 +19,35 @@ return {
 					},
 				},
 			})
+
+			-- Mason-lspconfig configuration
 			require("mason-lspconfig").setup({
-				-- ensure install language server
+				-- Ensure install for language server
 				ensure_installed = {
 					"lua_ls",
 					"clangd",
 					"tsserver",
 					"html",
-					"omnisharp",
 					"cssls",
+					"csharp_ls",
+					"omnisharp",
+				},
+			})
+
+			-- Mason tool installer configuration
+			-- Mason-tool-installer, such for install lsp, dap, linter, and formatter
+			-- I have an error when I install formatter, linter, and dap in the “ensure_installed” property “mason-lspconfig”.
+			require("mason-tool-installer").setup({
+				-- Ensure installed lsp, linter, formatter, dap
+				ensure_installed = {
+					"prettierd",
+					"codelldb",
+					"cpplint",
+					"clang-format",
+					"stylua",
+					"htmlbeautifier",
+					"csharpier",
+					"eslint_d",
 				},
 			})
 		end,
@@ -43,7 +66,7 @@ return {
 				capabilities = capabilities,
 			})
 
-			-- c/c++ lspconfig
+			-- C/C++ lspconfig
 			lspconfig.clangd.setup({
 				cmd = { "clangd" },
 				filetypes = { "c", "cpp", "objc", "objcpp" },
@@ -71,6 +94,9 @@ return {
 
 			-- C# lspconfig
 			lspconfig.csharp_ls.setup({
+				capabilities = capabilities,
+			})
+			lspconfig.omnisharp.setup({
 				capabilities = capabilities,
 			})
 
