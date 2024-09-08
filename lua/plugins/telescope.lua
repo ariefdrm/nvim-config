@@ -5,7 +5,11 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"ibhagwan/fzf-lua",
-			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+			"nvim-telescope/telescope-file-browser.nvim",
+			--[[ {
+				"nvim-telescope/telescope-fzf-native.nvim",
+				build = "make",
+			}, ]]
 		}, -- telescope dependency
 		config = function()
 			-- load telescope config
@@ -27,7 +31,21 @@ return {
 						override_file_sorter = true, -- override the file sorter
 						case_mode = "smart_case", -- or "ignore_case" or "respect_case"
 					},
+					file_browser = {
+						theme = "ivy",
+						-- disable netrw and use telescope-file-browser in the place
+						hijack_netrw = true,
+						mappings = {
+							["i"] = {
+								-- add custom mappings in insert mode
+							},
+							["n"] = {
+								-- add custom mappings in normal mode
+							},
+						},
+					},
 				},
+				require("telescope").load_extension("file_browser"),
 			})
 
 			-- Set leader key to space
@@ -37,6 +55,7 @@ return {
 			vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
 			vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 			vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
+			vim.keymap.set("n", "<leader>ee", ":Telescope file_browser<CR>", {})
 		end,
 	},
 	-- telescope-ui-select-nvim

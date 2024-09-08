@@ -16,6 +16,7 @@ return {
 				null_ls.builtins.formatting.htmlbeautifier,
 				null_ls.builtins.formatting.clang_format,
 				null_ls.builtins.diagnostics.trivy,
+				null_ls.builtins.diagnostics.eslint_d,
 			},
 			-- format on save
 			on_attach = function(client, bufnr)
