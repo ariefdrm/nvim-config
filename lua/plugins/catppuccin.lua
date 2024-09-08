@@ -2,7 +2,7 @@ return {
 	"catppuccin/nvim",
 	name = "catppuccin",
 	lazy = false, -- Load the colorscheme immediately
-	priority = 0, -- Ensure it loads first
+	priority = 1000, -- Ensure it loads first
 	config = function()
 		--set configuration catppuccin
 		require("catppuccin").setup({
