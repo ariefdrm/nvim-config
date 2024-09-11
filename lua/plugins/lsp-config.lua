@@ -4,12 +4,11 @@ return {
 		-- Mason nvim
 		"williamboman/mason.nvim",
 		dependencies = {
-			"williamboman/mason-lspconfig.nvim", -- mason lsp config
-			"WhoIsSethDaniel/mason-tool-installer.nvim",
+			"williamboman/mason-lspconfig.nvim", -- Mason lsp config
+			"WhoIsSethDaniel/mason-tool-installer.nvim", -- Mason tool installer
 		},
-		lazy = lazy,
 		config = function()
-			-- mason configuration
+			-- Mason configuration
 			require("mason").setup({
 				ui = {
 					icons = {
@@ -26,11 +25,10 @@ return {
 				ensure_installed = {
 					"lua_ls",
 					"clangd",
-					"tsserver",
 					"html",
 					"cssls",
 					"csharp_ls",
-					"omnisharp",
+					"ts_ls",
 				},
 			})
 
@@ -61,7 +59,7 @@ return {
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
 
-			-- lua lspconfig
+			-- Lua lspconfig
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
 			})
@@ -88,15 +86,12 @@ return {
 			})
 
 			-- javascript / typescript lspconfig
-			lspconfig.tsserver.setup({
+			lspconfig.ts_ls.setup({
 				capabilities = capabilities,
 			})
 
 			-- C# lspconfig
 			lspconfig.csharp_ls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.omnisharp.setup({
 				capabilities = capabilities,
 			})
 
@@ -105,7 +100,7 @@ return {
 				capabilities = capabilities,
 			})
 
-			-- keymaps
+			-- Keymaps
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 			vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
