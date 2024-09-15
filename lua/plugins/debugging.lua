@@ -35,7 +35,7 @@ return {
 					-- CHANGE THIS to your path!
 					command = "/home/arief/.local/share/nvim/mason/bin/codelldb",
 					args = { "--port", "${port}" },
-					name = "lldb",
+					name = "codelldb",
 
 					-- On windows you may have to uncomment this:
 					detached = false,
@@ -44,7 +44,7 @@ return {
 			dap.configurations.cpp = {
 				{
 					name = "Launch file",
-					type = "lldb",
+					type = "codelldb",
 					request = "launch",
 					program = function()
 						return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
