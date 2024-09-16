@@ -49,8 +49,8 @@ return {
 				}),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
+					{ name = "codeium" },
 					{ name = "luasnip" },
-				}, {
 					{ name = "buffer" },
 				}),
 			})
@@ -71,6 +71,17 @@ return {
 					{ name = "cmdline" },
 				}),
 			})
+		end,
+	},
+	-- Codeium
+	{
+		"Exafunction/codeium.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"hrsh7th/nvim-cmp",
+		},
+		config = function()
+			require("codeium").setup({})
 		end,
 	},
 }
