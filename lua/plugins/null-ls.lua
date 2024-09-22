@@ -19,7 +19,7 @@ return {
 					filetypes = { "c", "cpp" },
 				}),
 				-- null_ls.builtins.diagnostics.eslint_d,
-				require("none-ls.diagnostics.eslint_d"),
+				-- require("none-ls.diagnostics.eslint_d"),
 				require("none-ls.diagnostics.cpplint"),
 			},
 			-- format on save
