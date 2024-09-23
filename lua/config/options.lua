@@ -1,5 +1,19 @@
 -- lua/config/options.lua
 
+-- to use clip.exe as clipboard engine for wsl windows
+vim.g.clipboard = {
+	name = "WslClipboard",
+	copy = {
+		["+"] = "clip.exe", -- Copy to system clipboard
+		["*"] = "clip.exe", -- Copy to selection clipboard (same for WSL)
+	},
+	paste = {
+		["+"] = "powershell.exe -noprofile -command Get-Clipboard", -- Paste from system clipboard
+		["*"] = "powershell.exe -noprofile -command Get-Clipboard", -- Paste from selection clipboard
+	},
+	cache_enabled = 0,
+}
+
 -- Set leader key to space
 vim.g.mapleader = " "
 
