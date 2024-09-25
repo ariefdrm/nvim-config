@@ -68,7 +68,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.completeopt = "menuone,noselect"
 
 -- File encoding
--- vim.opt.fileencoding = "utf-8"
+vim.opt.fileencoding = "utf-8"
 
 -- Disable mode display since statusline plugins can show it
 vim.opt.showmode = false
