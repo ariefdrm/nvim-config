@@ -50,12 +50,13 @@ return {
 
 			-- Set leader key to space
 			-- vim.g.mapleader = " "
+			local opts = { noremap = true, silent = true }
 
-			vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
-			vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
-			vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
-			vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
-			vim.keymap.set("n", "<leader>ee", ":Telescope file_browser<CR>", {})
+			vim.keymap.set("n", "<leader>ff", builtin.find_files, opts)
+			vim.keymap.set("n", "<leader>fg", builtin.live_grep, opts)
+			vim.keymap.set("n", "<leader>fb", builtin.buffers, opts)
+			vim.keymap.set("n", "<leader>fh", builtin.help_tags, opts)
+			vim.keymap.set("n", "<leader>ee", ":Telescope file_browser<CR>", opts)
 		end,
 	},
 	-- telescope-ui-select-nvim
