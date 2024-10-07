@@ -25,6 +25,7 @@ return {
 					pattern = {
 						"alpha",
 						"dashboard",
+						"noice",
 						"fzf",
 						"help",
 						"lazy",

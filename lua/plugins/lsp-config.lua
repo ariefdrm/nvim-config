@@ -43,7 +43,6 @@ return {
 					"cpplint",
 					"clang-format",
 					"stylua",
-					"htmlbeautifier",
 					"csharpier",
 					"eslint_d",
 				},

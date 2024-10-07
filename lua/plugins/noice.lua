@@ -21,7 +21,7 @@ return {
 					bottom_search = true, -- use a classic bottom cmdline for search
 					command_pallete = true, -- positon the cmdline and popupmenu together
 					long_message_to_split = true, -- long message will be sent to a split
-					inc_name = false, -- enables an input dialog for inc-rename.nvim
+					inc_rename = false, -- enables an input dialog for inc-rename.nvim
 					lsp_doc_border = false, -- add a border to hover docs and signatures help
 				},
 			},

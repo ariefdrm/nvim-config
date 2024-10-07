@@ -14,7 +14,6 @@ return {
 				null_ls.builtins.formatting.stylua,
 				null_ls.builtins.formatting.csharpier,
 				null_ls.builtins.formatting.prettierd,
-				null_ls.builtins.formatting.htmlbeautifier,
 				null_ls.builtins.formatting.clang_format.with({
 					filetypes = { "c", "cpp" },
 				}),

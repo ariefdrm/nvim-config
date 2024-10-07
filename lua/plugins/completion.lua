@@ -47,15 +47,19 @@ return {
 						end
 					end, { "i", "s" }),
 				}),
+
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
-					{ name = "codeium" },
 					{ name = "luasnip" },
+					{ name = "codeium" },
+				}, {
 					{ name = "buffer" },
+					{ name = "path" },
 				}),
 			})
 
 			-- Setup for command-line completion
+
 			cmp.setup.cmdline("/", {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = {
@@ -73,10 +77,10 @@ return {
 			})
 		end,
 	},
+
 	-- Codeium
 	{
 		"Exafunction/codeium.nvim",
-		lazy = false,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"hrsh7th/nvim-cmp",
