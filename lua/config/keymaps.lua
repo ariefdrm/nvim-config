@@ -17,10 +17,13 @@ keymap("n", "<C-s>", ":w<CR>", opts) -- Save the current file
 keymap("n", "<C-S>", ":wa<CR>", opts) -- save all open buffers / all open files
 
 -- Copy
-keymap("n", "<leader>c", '"+y', opts) -- copy to system clipboard in normal mode
-keymap("v", "<leader>c", '"+y', opts) -- copy to system clipboard in visual mode
+keymap("n", "<leader>c", '"*y', opts) -- copy to system clipboard in normal mode
+keymap("v", "<leader>c", '"*y', opts) -- copy to system clipboard in visual mode
+keymap("n", "<leader>cc", '"*yy', opts) -- copy to system clipboard in normal mode
+keymap("v", "<leader>cc", '"*yy', opts) -- copy to system clipboard in visual mode
+
 -- Paste
-keymap("n", "<leader>v", '"+p', opts) -- Paste from clipboard in normal mode
+keymap("n", "<leader>v", '"*p', opts) -- Paste from clipboard in normal mode
 
 -- Select all
 keymap("n", "<leader>a", "ggVG", opts) -- Select all content in the file

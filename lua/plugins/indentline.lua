@@ -25,6 +25,7 @@ return {
 					pattern = {
 						"alpha",
 						"dashboard",
+						"noice",
 						"fzf",
 						"help",
 						"lazy",
@@ -35,6 +36,8 @@ return {
 						"toggleterm",
 						"Trouble",
 						"trouble",
+						"dbee",
+						"dbui",
 					},
 					callback = function()
 						vim.b.miniindentscope_disable = true

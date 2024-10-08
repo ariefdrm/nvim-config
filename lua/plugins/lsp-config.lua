@@ -43,7 +43,6 @@ return {
 					"cpplint",
 					"clang-format",
 					"stylua",
-					"htmlbeautifier",
 					"csharpier",
 					"eslint_d",
 				},
@@ -77,12 +76,40 @@ return {
 					"configure.ac",
 					".git",
 				},
-				capabilities = require("cmp_nvim_lsp").default_capabilities(),
+				capabilities = capabilities,
 			})
 
 			-- html lspconfig
 			lspconfig.html.setup({
 				capabilities = capabilities,
+			})
+
+			-- emmet_ls
+			lspconfig.emmet_ls.setup({
+				-- on_attach = on_attach,
+				capabilities = capabilities,
+				filetypes = {
+					"css",
+					"eruby",
+					"html",
+					"javascript",
+					"javascriptreact",
+					"less",
+					"sass",
+					"scss",
+					"svelte",
+					"pug",
+					"typescriptreact",
+					"vue",
+				},
+				init_options = {
+					html = {
+						options = {
+							-- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+							["bem.enabled"] = true,
+						},
+					},
+				},
 			})
 
 			-- javascript / typescript lspconfig

@@ -27,7 +27,7 @@ return {
 				dapui.close()
 			end
 
-			-- configurations dap/debugger  for c/c++/rust
+			-- configurations dap/debugger for c/c++/rust
 			dap.adapters.codelldb = {
 				type = "server",
 				port = "${port}",
