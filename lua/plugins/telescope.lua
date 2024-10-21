@@ -6,10 +6,10 @@ return {
 			"nvim-lua/plenary.nvim",
 			"ibhagwan/fzf-lua",
 			"nvim-telescope/telescope-file-browser.nvim",
-			--[[ {
+			{
 				"nvim-telescope/telescope-fzf-native.nvim",
 				build = "make",
-			}, ]]
+			},
 		}, -- telescope dependency
 		config = function()
 			-- load telescope config
@@ -46,6 +46,7 @@ return {
 					},
 				},
 				require("telescope").load_extension("file_browser"),
+				require("telescope").load_extension("fzf"),
 			})
 
 			-- Set leader key to space

@@ -27,7 +27,6 @@ return {
 					"clangd",
 					"html",
 					"cssls",
-					"csharp_ls",
 					"ts_ls",
 				},
 			})
