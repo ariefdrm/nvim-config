@@ -27,7 +27,6 @@ return {
 					"clangd",
 					"html",
 					"cssls",
-					"csharp_ls",
 					"ts_ls",
 				},
 			})
@@ -118,12 +117,17 @@ return {
 			})
 
 			-- C# lspconfig
-			lspconfig.csharp_ls.setup({
-				capabilities = capabilities,
-			})
+			 lspconfig.csharp_ls.setup({
+			 	capabilities = capabilities,
+			 })
 
 			-- css lspconfig
 			lspconfig.cssls.setup({
+				capabilities = capabilities,
+			})
+
+			-- Python lspconfig
+			lspconfig.pyright.setup({
 				capabilities = capabilities,
 			})
 

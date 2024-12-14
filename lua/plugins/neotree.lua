@@ -8,12 +8,19 @@ return {
 		"MunifTanjim/nui.nvim",
 		"3rd/image.nvim",
 	},
-
 	config = function()
 		require("neo-tree").setup({
-			close_if_last_window = true, -- Close Neo-tree when it is the last window open
-			filesystem = {
-				hijack_netrw_behavior = "open_default", -- Recommended for file management
+			event_handlers = {
+				-- Auto close on open file
+				{
+					event = "file_open_requested",
+					handler = function()
+						-- auto close
+						vim.cmd("Neotree close")
+						-- OR
+						-- require("neo-tree.command").execute({ action = "close" })
+					end,
+				},
 			},
 		})
 		-- keymapping for neotree

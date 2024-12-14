@@ -17,6 +17,7 @@ return {
 				null_ls.builtins.formatting.clang_format.with({
 					filetypes = { "c", "cpp" },
 				}),
+				null_ls.builtins.formatting.black,
 				-- null_ls.builtins.diagnostics.eslint_d,
 				-- require("none-ls.diagnostics.eslint_d"),
 				require("none-ls.diagnostics.cpplint"),
