@@ -1,7 +1,7 @@
 return {
 	{
 		"nvim-telescope/telescope.nvim",
-		-- tag = "0.1.8",
+		tag = "0.1.8",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"ibhagwan/fzf-lua",
@@ -28,12 +28,15 @@ return {
 					fzf = {
 						fuzzy = true, -- false will only do exact matching
 						override_generic_sorter = true, -- override the generic sorter
+
 						override_file_sorter = true, -- override the file sorter
 						case_mode = "smart_case", -- or "ignore_case" or "respect_case"
 					},
+
 					file_browser = {
 						theme = "ivy",
 						-- disable netrw and use telescope-file-browser in the place
+
 						hijack_netrw = true,
 						mappings = {
 							["i"] = {
@@ -60,6 +63,7 @@ return {
 			vim.keymap.set("n", "<leader>ee", ":Telescope file_browser<CR>", opts)
 		end,
 	},
+
 	-- telescope-ui-select-nvim
 	{
 		"nvim-telescope/telescope-ui-select.nvim",

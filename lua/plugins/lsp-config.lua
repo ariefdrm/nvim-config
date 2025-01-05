@@ -117,9 +117,9 @@ return {
 			})
 
 			-- C# lspconfig
-			 lspconfig.csharp_ls.setup({
-			 	capabilities = capabilities,
-			 })
+			lspconfig.csharp_ls.setup({
+				capabilities = capabilities,
+			})
 
 			-- css lspconfig
 			lspconfig.cssls.setup({
