@@ -23,11 +23,12 @@ return {
 			require("mason-lspconfig").setup({
 				-- Ensure install for language server
 				ensure_installed = {
-					"lua_ls",
-					"clangd",
-					"html",
-					"cssls",
-					"ts_ls",
+					-- uncomment or add this section if you want install language server
+					-- "lua_ls",
+					-- "clangd",
+					-- "html",
+					-- "cssls",
+					-- "ts_ls",
 				},
 			})
 
@@ -37,13 +38,14 @@ return {
 			require("mason-tool-installer").setup({
 				-- Ensure installed lsp, linter, formatter, dap
 				ensure_installed = {
-					"prettierd",
-					"codelldb",
-					"cpplint",
-					"clang-format",
-					"stylua",
-					"csharpier",
-					"eslint_d",
+					-- Uncomment or add this section if you want install linter and formatter
+					-- "prettierd",
+					-- "codelldb",
+					-- "cpplint",
+					-- "clang-format",
+					-- "stylua",
+					-- "csharpier",
+					-- "eslint_d",
 				},
 			})
 		end,
@@ -80,11 +82,21 @@ return {
 
 			-- html lspconfig
 			lspconfig.html.setup({
+				cmd = { "vscode-html-language-server", "--stdio" },
 				capabilities = capabilities,
+				init_options = {
+					configurationSection = { "html", "css", "javascript" },
+					embeddedLanguages = {
+						css = true,
+						javascript = true,
+					},
+					provideFormatter = true,
+				},
 			})
 
 			-- emmet_ls
 			lspconfig.emmet_ls.setup({
+				cmd = { "emmet-ls", "--stdio" },
 				-- on_attach = on_attach,
 				capabilities = capabilities,
 				filetypes = {
