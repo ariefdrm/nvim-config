@@ -24,6 +24,6 @@ return {
 			},
 		})
 		-- keymapping for neotree
-		vim.keymap.set("n", "<C-e>", ":Neotree filesystem reveal left<CR>", { silent = true, noremap = true })
+		vim.keymap.set("n", "<leader>e", ":Neotree filesystem reveal left<CR>", { silent = true, noremap = true })
 	end,
 }

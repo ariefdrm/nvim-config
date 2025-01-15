@@ -60,7 +60,7 @@ return {
 			vim.keymap.set("n", "<leader>fg", builtin.live_grep, opts)
 			vim.keymap.set("n", "<leader>fb", builtin.buffers, opts)
 			vim.keymap.set("n", "<leader>fh", builtin.help_tags, opts)
-			vim.keymap.set("n", "<leader>ee", ":Telescope file_browser<CR>", opts)
+			vim.keymap.set("n", "<leader>fe", ":Telescope file_browser<CR>", opts)
 		end,
 	},
 
