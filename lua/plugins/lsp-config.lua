@@ -24,8 +24,8 @@ return {
 				-- Ensure install for language server
 				ensure_installed = {
 					-- uncomment or add this section if you want install language server
-					-- "lua_ls",
-					-- "clangd",
+					"lua_ls",
+					"clangd",
 					-- "html",
 					-- "cssls",
 					-- "ts_ls",
@@ -40,10 +40,10 @@ return {
 				ensure_installed = {
 					-- Uncomment or add this section if you want install linter and formatter
 					-- "prettierd",
-					-- "codelldb",
-					-- "cpplint",
-					-- "clang-format",
-					-- "stylua",
+					"codelldb",
+					"cpplint",
+					"clang-format",
+					"stylua",
 					-- "csharpier",
 					-- "eslint_d",
 				},
