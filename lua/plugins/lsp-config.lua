@@ -40,10 +40,10 @@ return {
 				ensure_installed = {
 					-- Uncomment or add this section if you want install linter and formatter
 					-- "prettierd",
-					"codelldb",
-					"cpplint",
-					"clang-format",
-					"stylua",
+					-- "codelldb",
+					-- "cpplint",
+					-- "clang-format",
+					-- "stylua",
 					-- "csharpier",
 					-- "eslint_d",
 				},

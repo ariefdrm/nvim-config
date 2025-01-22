@@ -17,10 +17,5 @@ return {
 
 		-- Keybindings for better terminal usage
 		local opts = { noremap = true, silent = true }
-		-- vim.keymap.set("n", "<leader>tf", "<cmd>ToggleTerm direction=float<CR>", opts)
-		vim.keymap.set("n", "<leader>tf", "<cmd>ToggleTerm <CR>", opts)
-
-		-- Keybinding to close terminal with Esc
-		vim.keymap.set("t", "<Esc>", "<C-\\><C-n><cmd>ToggleTerm<CR>", opts)
 	end,
 }
