@@ -125,6 +125,7 @@ return {
 
 			-- javascript / typescript lspconfig
 			lspconfig.ts_ls.setup({
+				cmd = { "typescript-language-server", "--stdio" },
 				capabilities = capabilities,
 			})
 

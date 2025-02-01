@@ -54,6 +54,10 @@ return {
 	-- formatters
 	{
 		"stevearc/conform.nvim",
+		dependencies = {
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
+		},
 		config = function()
 			require("conform").setup({
 				formatters_by_ft = {
@@ -64,6 +68,7 @@ return {
 					csharp = { "clang-format" },
 					cpp = { "clang-format" },
 					lua = { "stylua" },
+					python = { "black" },
 				},
 				format_on_save = {
 					timeout_ms = 1000, -- Set a timeout for formatting

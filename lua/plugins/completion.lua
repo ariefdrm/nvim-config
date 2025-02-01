@@ -10,16 +10,45 @@ return {
 			"saadparwaiz1/cmp_luasnip", -- Snippet source for nvim-cmp
 			"L3MON4D3/LuaSnip", -- Snippet engine
 			"rafamadriz/friendly-snippets", -- Snippet collection
+			"onsails/lspkind.nvim", -- lspkind
 		},
 		config = function()
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
+			local lspkind = require("lspkind")
 
 			-- vscode format
 			require("luasnip.loaders.from_vscode").lazy_load({ exclude = vim.g.vscode_snippets_exclude or {} })
 			require("luasnip.loaders.from_vscode").lazy_load({ paths = vim.g.vscode_snippets_path or "" })
 
 			cmp.setup({
+				experimental = {
+					ghost_text = { hlgroup = "Comment" },
+				},
+				formatting = {
+					format = lspkind.cmp_format({
+						mode = "symbol_text", -- Show both icons and text
+						maxwidth = 50, -- Max width of the completion menu
+						ellipsis_char = "...", -- Ellipsis when text overflows
+						menu = {
+							buffer = "[Buffer]",
+							nvim_lsp = "[LSP]",
+							luasnip = "[Snip]",
+							nvim_lua = "[Lua]",
+							path = "[Path]",
+						},
+					}),
+				},
+				window = {
+					documentation = {
+						border = "rounded", -- Border style: 'single', 'double', 'rounded', 'shadow', or custom
+						winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+					},
+					completion = {
+						border = "rounded",
+						winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+					},
+				},
 				snippet = {
 					expand = function(args)
 						luasnip.lsp_expand(args.body)
@@ -52,8 +81,8 @@ return {
 				}),
 
 				sources = cmp.config.sources({
-					{ name = "nvim_lsp" },
 					{ name = "codeium" },
+					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
 				}, {
 					{ name = "path" },
