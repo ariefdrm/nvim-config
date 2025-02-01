@@ -17,6 +17,14 @@ return {
 			local luasnip = require("luasnip")
 			local lspkind = require("lspkind")
 
+			-- Set highlight groups for the completion menu
+			vim.api.nvim_set_hl(0, "CmpItemAbbr", { fg = "#D8DEE9" }) -- Default text
+			vim.api.nvim_set_hl(0, "CmpItemAbbrDeprecated", { fg = "#808080", strikethrough = true }) -- Deprecated items
+			vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { fg = "#81A1C1" }) -- Matched text
+			vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", { fg = "#81A1C1" }) -- Fuzzy-matched text
+			vim.api.nvim_set_hl(0, "CmpItemKind", { fg = "#88C0D0" }) -- Kind (e.g., Class, Function)
+			vim.api.nvim_set_hl(0, "CmpItemMenu", { fg = "#5E81AC" }) -- Source (e.g., LSP, Buffer)
+
 			-- vscode format
 			require("luasnip.loaders.from_vscode").lazy_load({ exclude = vim.g.vscode_snippets_exclude or {} })
 			require("luasnip.loaders.from_vscode").lazy_load({ paths = vim.g.vscode_snippets_path or "" })
