@@ -8,8 +8,8 @@ vim.g.clipboard = {
 		["*"] = "clip.exe", -- Copy to selection clipboard (same for WSL)
 	},
 	paste = {
-		["+"] = "powershell.exe -noprofile -command Get-Clipboard", -- Paste from system clipboard
-		["*"] = "powershell.exe -noprofile -command Get-Clipboard", -- Paste from selection clipboard
+		["+"] = 'pwsh.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+		["*"] = 'pwsh.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
 	},
 	cache_enabled = 0,
 }

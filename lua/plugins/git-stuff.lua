@@ -15,7 +15,7 @@ return {
 	-- Lazygit
 	{
 		"kdheepak/lazygit.nvim",
-		lazy = true,
+		lazy = false,
 		cmd = {
 
 			"LazyGit",
@@ -27,6 +27,7 @@ return {
 		-- optional for floating window border decoration
 		dependencies = {
 			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
 		},
 		-- setting the keybinding for LazyGit with 'keys' is recommended in
 		-- order to load the plugin when the command is run for the first time

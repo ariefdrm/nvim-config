@@ -4,7 +4,6 @@ return {
 		tag = "0.1.8",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"ibhagwan/fzf-lua",
 			"nvim-telescope/telescope-file-browser.nvim",
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
@@ -13,7 +12,7 @@ return {
 		}, -- telescope dependency
 		config = function()
 			-- load telescope config
-			local builtin = require("telescope.builtin")
+			-- local builtin = require("telescope.builtin")
 			local telescope = require("telescope")
 			telescope.setup({
 				defaults = {
@@ -48,19 +47,22 @@ return {
 						},
 					},
 				},
+
+				-- load extension
+				require("telescope").load_extension("lazygit"),
 				require("telescope").load_extension("file_browser"),
 				require("telescope").load_extension("fzf"),
 			})
 
 			-- Set leader key to space
 			-- vim.g.mapleader = " "
-			local opts = { noremap = true, silent = true }
+			-- local opts = { noremap = true, silent = true }
 
-			vim.keymap.set("n", "<leader>ff", builtin.find_files, opts)
-			vim.keymap.set("n", "<leader>fg", builtin.live_grep, opts)
-			vim.keymap.set("n", "<leader>fb", builtin.buffers, opts)
-			vim.keymap.set("n", "<leader>fh", builtin.help_tags, opts)
-			vim.keymap.set("n", "<leader>ee", ":Telescope file_browser<CR>", opts)
+			-- Telescope
+			-- keymap("n", "<leader>ff", builtin.find_files, opts)
+			-- keymap("n", "<leader>fg", builtin.live_grep, opts)
+			-- keymap("n", "<leader>fb", builtin.buffers, opts)
+			-- keymap("n", "<leader>fh", builtin.help_tags, opts)
 		end,
 	},
 
