@@ -22,6 +22,8 @@ keymap("n", "<leader>a", "ggVG", opts) -- Select all content in the file
 keymap("n", "<leader>q", ":q<CR>", opts) -- Quit
 keymap("n", "<leader>x", ":xa<CR>", opts) -- Save and quit
 keymap("n", "<leader>sc", ":nohlsearch<cr>", opts) -- clear highlight search
+keymap("i", "kj", "<Esc>", opts) -- exit insert mode
+keymap("n", ";", ":", { noremap = true, silent = false }) -- ; to :
 
 -- Nvim tree
 keymap("n", "<leader>e", ":Neotree reveal<CR>", opts) -- nvim tree

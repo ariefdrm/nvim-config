@@ -25,7 +25,7 @@ return {
 				ensure_installed = {
 					-- uncomment or add this section if you want install language server
 					"lua_ls",
-					"clangd",
+					-- "clangd",
 					-- "html",
 					-- "cssls",
 					-- "ts_ls",
@@ -43,7 +43,7 @@ return {
 					-- "codelldb",
 					-- "cpplint",
 					-- "clang-format",
-					-- "stylua",
+					"stylua",
 					-- "csharpier",
 					-- "eslint_d",
 				},
@@ -59,9 +59,27 @@ return {
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
 
+			local on_attach = function(client, bufnr)
+				local opts = { buffer = bufnr, noremap = true, silent = true }
+
+				-- Keymaps
+				vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+				vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+				vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
+			end
+
+			local on_init = function(client, _)
+				if client.supports_method("textDocument/semanticTokens") then
+					client.server_capabilities.semanticTokensProvider = nil
+				end
+			end
+
 			-- Lua lspconfig
 			lspconfig.lua_ls.setup({
+				cmd = { "lua-language-server" },
 				capabilities = capabilities,
+				on_attach = on_attach,
+				on_init = on_init,
 			})
 
 			-- C/C++ lspconfig
@@ -78,12 +96,16 @@ return {
 					".git",
 				},
 				capabilities = capabilities,
+				on_attach = on_attach,
+				on_init = on_init,
 			})
 
 			-- html lspconfig
 			lspconfig.html.setup({
 				cmd = { "vscode-html-language-server", "--stdio" },
 				capabilities = capabilities,
+				on_attach = on_attach,
+				on_init = on_init,
 				init_options = {
 					configurationSection = { "html", "css", "javascript" },
 					embeddedLanguages = {
@@ -99,6 +121,8 @@ return {
 				cmd = { "emmet-ls", "--stdio" },
 				-- on_attach = on_attach,
 				capabilities = capabilities,
+				on_init = on_init,
+				on_attach = on_attach,
 				filetypes = {
 					"css",
 					"eruby",
@@ -127,27 +151,30 @@ return {
 			lspconfig.ts_ls.setup({
 				cmd = { "typescript-language-server", "--stdio" },
 				capabilities = capabilities,
+				on_attach = on_attach,
+				on_init = on_init,
 			})
 
 			-- C# lspconfig
 			lspconfig.csharp_ls.setup({
 				capabilities = capabilities,
+				on_attach = on_attach,
+				on_init = on_init,
 			})
 
 			-- css lspconfig
 			lspconfig.cssls.setup({
 				capabilities = capabilities,
+				on_attach = on_attach,
+				on_init = on_init,
 			})
 
 			-- Python lspconfig
 			lspconfig.pyright.setup({
 				capabilities = capabilities,
+				on_attach = on_attach,
+				on_init = on_init,
 			})
-
-			-- Keymaps
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-			vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-			vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
 		end,
 	},
 }
