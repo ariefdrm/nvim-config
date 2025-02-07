@@ -14,9 +14,6 @@ vim.g.clipboard = {
 	cache_enabled = 0,
 }
 
--- Set leader key to space
-vim.g.mapleader = " "
-
 -- Basic options
 vim.opt.number = true -- Show line numbers
 vim.opt.relativenumber = true -- Show relative line numbers

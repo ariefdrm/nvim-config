@@ -22,9 +22,11 @@ keymap("n", "<leader>a", "ggVG", opts) -- Select all content in the file
 keymap("n", "<leader>q", ":q<CR>", opts) -- Quit
 keymap("n", "<leader>x", ":xa<CR>", opts) -- Save and quit
 keymap("n", "<leader>sc", ":nohlsearch<cr>", opts) -- clear highlight search
+keymap("i", "kj", "<Esc>", opts) -- exit insert mode
+keymap("n", ";", ":", { noremap = true, silent = false }) -- ; to :
 
 -- Nvim tree
-keymap("n", "<leader>e", ":Neotree reveal<CR>", opts)
+keymap("n", "<leader>e", ":Neotree reveal<CR>", opts) -- nvim tree
 
 -- Mapping/Keybindings for bufferline
 keymap("n", "<TAB>", ":BufferLineCycleNext<CR>", opts) -- Move next buffer
@@ -38,7 +40,9 @@ keymap("n", "<leader>fg", ":Telescope live_grep<CR>", opts) -- Live grep
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts) -- Buffers
 keymap("n", "<leader>fh", ":Telescope help_tags<CR>", opts) -- Help
 keymap("n", "<leader>fc", ":Telescope colorscheme<CR>", opts) -- Colorscheme
-keymap("n", "<leader>fe", ":Telescope file_browser<CR>", opts)
+keymap("n", "<leader>fe", ":Telescope file_browser<CR>", opts) -- file_browser
+keymap("n", "<leader>ss", ":lua require('telescope.builtin').lsp_document_symbols()<CR>", opts)
+keymap("n", "<leader>cc", ":lua require('telescope.builtin').commands()<CR>", opts)
 
 -- Increment/decrement
 keymap("n", "+", "<C-a>", opts) -- Increment
@@ -48,5 +52,11 @@ keymap("n", "-", "<C-x>", opts) -- Decrement
 keymap("n", "<leader>rn", ":IncRename ", opts)
 
 -- ToggleTerm
-vim.keymap.set("n", "<leader>tf", "<cmd>ToggleTerm <CR>", opts) -- Open terminal
-vim.keymap.set("t", "<Esc>", "<C-\\><C-n><cmd>ToggleTerm<CR>", opts) -- Keybinding to close terminal with Esc
+keymap("n", "<leader>tf", "<cmd>ToggleTerm <CR>", opts) -- Open terminal
+keymap("t", "<Esc>", "<C-\\><C-n><cmd>ToggleTerm<CR>", opts) -- Keybinding to close terminal with Esc
+
+-- git signs
+keymap("n", "<leader>gs", ":Gitsigns<CR>", opts)
+keymap("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", opts)
+keymap("n", "<leader>gn", ":Gitsigns next_hunk<CR>", opts)
+keymap("n", "<leader>gt", ":Gitsigns toggle_current_line_blame<CR>", opts)
