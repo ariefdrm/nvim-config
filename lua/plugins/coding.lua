@@ -37,7 +37,7 @@ return {
 		config = function()
 			require("nvim-autopairs").setup({
 				enable_check_bracket_line = true, --- check bracket in same line
-				enable_bracket_in_quote = true, --
+				enable_bracket_in_quote = true, -- enable autopairs in quote
 				enable_afterquote = true, -- add bracket pairs after quote
 			})
 		end,

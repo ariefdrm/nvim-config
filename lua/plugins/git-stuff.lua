@@ -11,9 +11,7 @@ return {
 	-- Lazygit
 	{
 		"kdheepak/lazygit.nvim",
-		lazy = false,
 		cmd = {
-
 			"LazyGit",
 			"LazyGitConfig",
 			"LazyGitCurrentFile",
@@ -24,11 +22,6 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim",
-		},
-		-- setting the keybinding for LazyGit with 'keys' is recommended in
-		-- order to load the plugin when the command is run for the first time
-		keys = {
-			{ "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
 		},
 	},
 }
