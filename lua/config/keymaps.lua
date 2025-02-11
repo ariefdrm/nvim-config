@@ -60,3 +60,7 @@ keymap("n", "<leader>gs", ":Gitsigns<CR>", opts)
 keymap("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", opts)
 keymap("n", "<leader>gn", ":Gitsigns next_hunk<CR>", opts)
 keymap("n", "<leader>gt", ":Gitsigns toggle_current_line_blame<CR>", opts)
+
+-- lazy git
+keymap("n", "<leader>lg", ":LazyGit<CR>", opts)
+keymap("t", "<Esc>", "<C-\\><C-n><cmd>q<CR>", opts) -- exit lazygit with esc

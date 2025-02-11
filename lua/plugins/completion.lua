@@ -12,7 +12,7 @@ return {
 			"rafamadriz/friendly-snippets", -- Snippet collection
 			"onsails/lspkind.nvim", -- lspkind
 		},
-		config = function()
+		opts = function()
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
 			local lspkind = require("lspkind")
@@ -25,13 +25,19 @@ return {
 			vim.api.nvim_set_hl(0, "CmpItemKind", { fg = "#88C0D0" }) -- Kind (e.g., Class, Function)
 			vim.api.nvim_set_hl(0, "CmpItemMenu", { fg = "#5E81AC" }) -- Source (e.g., LSP, Buffer)
 
+			-- Set highlight groups for the documentation window
+			vim.api.nvim_set_hl(0, "CmpDocumentation", { bg = "#2E3440", fg = "#D8DEE9" })
+			vim.api.nvim_set_hl(0, "CmpDocumentationBorder", { bg = "#2E3440", fg = "#2E3440" })
+
 			-- vscode format
 			require("luasnip.loaders.from_vscode").lazy_load({ exclude = vim.g.vscode_snippets_exclude or {} })
 			require("luasnip.loaders.from_vscode").lazy_load({ paths = vim.g.vscode_snippets_path or "" })
 
 			cmp.setup({
 				experimental = {
-					ghost_text = { hlgroup = "Comment" },
+					-- only show ghost text when we show ai completions
+					-- ghost_text = { hlgroup = "Comment" },
+					ghost_text = true,
 				},
 				formatting = {
 					format = lspkind.cmp_format({
@@ -41,6 +47,7 @@ return {
 						menu = {
 							buffer = "[Buffer]",
 							nvim_lsp = "[LSP]",
+							codeium = "[codeium]",
 							luasnip = "[Snip]",
 							nvim_lua = "[Lua]",
 							path = "[Path]",
@@ -63,8 +70,8 @@ return {
 					end,
 				},
 				mapping = cmp.mapping.preset.insert({
-					["<C-b>"] = cmp.mapping.scroll_docs(-4),
-					["<C-f>"] = cmp.mapping.scroll_docs(4),
+					["<C-k>"] = cmp.mapping.scroll_docs(-4),
+					["<C-j>"] = cmp.mapping.scroll_docs(4),
 					["<C-l>"] = cmp.mapping.complete(),
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
 					-- using tab for next completion and previous completion
@@ -89,8 +96,8 @@ return {
 				}),
 
 				sources = cmp.config.sources({
-					{ name = "codeium" },
 					{ name = "nvim_lsp" },
+					{ name = "codeium" },
 					{ name = "luasnip" },
 				}, {
 					{ name = "path" },

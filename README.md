@@ -1,7 +1,5 @@
 # Neovim Lazy Config
 
-===
-
 My first own config for neovim from scratch.
 
 ## Requirments
@@ -13,8 +11,6 @@ My first own config for neovim from scratch.
 - ripgrep for telescope plugins.
 
 ## Installation
-
-Install my-project with npm
 
 ### Windows
 
