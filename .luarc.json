@@ -10,6 +10,7 @@
     "diagnostics.disable": [
         "redundant-value",
         "undefined-global",
-        "redefined-local"
+        "redefined-local",
+        "missing-fields"
     ]
 }

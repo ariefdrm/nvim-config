@@ -55,125 +55,56 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
 
+			-- List of LSP servers
+			local servers = {
+				"lua_ls", -- Lua
+				"pyright", -- Python
+				"ts_ls", -- TypeScript/JavaScript
+				"clangd", -- C/C++
+			}
+
+			-- LSP keybindings and on_attach function
 			local on_attach = function(client, bufnr)
-				local opts = { buffer = bufnr, noremap = true, silent = true }
+				local keymap = vim.keymap.set
+				local opts = { buffer = bufnr, silent = true }
 
-				-- Keymaps
-				vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-				vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-				vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
+				keymap("n", "gD", vim.lsp.buf.declaration, opts)
+				keymap("n", "gd", vim.lsp.buf.definition, opts)
+				keymap("n", "K", vim.lsp.buf.hover, opts)
+				keymap("n", "gi", vim.lsp.buf.implementation, opts)
+				keymap("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+				keymap("n", "<leader>D", vim.lsp.buf.type_definition, opts)
+				keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
+				keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+				keymap("n", "gr", vim.lsp.buf.references, opts)
 			end
 
-			local on_init = function(client, _)
-				if client.supports_method("textDocument/semanticTokens") then
-					client.server_capabilities.semanticTokensProvider = nil
-				end
-			end
+			-- Extend capabilities with nvim-cmp
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-			-- Lua lspconfig
-			lspconfig.lua_ls.setup({
-				cmd = { "lua-language-server" },
-				capabilities = capabilities,
-				on_attach = on_attach,
-				on_init = on_init,
-			})
+			-- Loop over each server to set up LSP configurations
+			for _, server in ipairs(servers) do
+				local opts = {
+					on_attach = on_attach,
+					capabilities = capabilities,
+				}
 
-			-- C/C++ lspconfig
-			lspconfig.clangd.setup({
-				cmd = { "clangd" },
-				filetypes = { "c", "cpp", "objc", "objcpp" },
-				root_pattern = {
-					".clangd",
-					".clang-tidy",
-					".clang-format",
-					"compile_commands.json",
-					"compile_flags.txt",
-					"configure.ac",
-					".git",
-				},
-				capabilities = capabilities,
-				on_attach = on_attach,
-				on_init = on_init,
-			})
-
-			-- html lspconfig
-			lspconfig.html.setup({
-				cmd = { "vscode-html-language-server", "--stdio" },
-				capabilities = capabilities,
-				on_attach = on_attach,
-				on_init = on_init,
-				init_options = {
-					configurationSection = { "html", "css", "javascript" },
-					embeddedLanguages = {
-						css = true,
-						javascript = true,
-					},
-					provideFormatter = true,
-				},
-			})
-
-			-- emmet_ls
-			lspconfig.emmet_ls.setup({
-				cmd = { "emmet-ls", "--stdio" },
-				-- on_attach = on_attach,
-				capabilities = capabilities,
-				on_init = on_init,
-				on_attach = on_attach,
-				filetypes = {
-					"css",
-					"eruby",
-					"html",
-					"javascript",
-					"javascriptreact",
-					"less",
-					"sass",
-					"scss",
-					"svelte",
-					"pug",
-					"typescriptreact",
-					"vue",
-				},
-				init_options = {
-					html = {
-						options = {
-							-- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
-							["bem.enabled"] = true,
+				-- Custom settings for lua_ls
+				if server == "lua_ls" then
+					opts.settings = {
+						Lua = {
+							runtime = { version = "LuaJIT" },
+							diagnostics = { globals = { "vim" } },
+							workspace = { library = vim.api.nvim_get_runtime_file("", true) },
+							telemetry = { enable = false },
 						},
-					},
-				},
-			})
+					}
+				end
 
-			-- javascript / typescript lspconfig
-			lspconfig.ts_ls.setup({
-				cmd = { "typescript-language-server", "--stdio" },
-				capabilities = capabilities,
-				on_attach = on_attach,
-				on_init = on_init,
-			})
-
-			-- C# lspconfig
-			lspconfig.csharp_ls.setup({
-				capabilities = capabilities,
-				on_attach = on_attach,
-				on_init = on_init,
-			})
-
-			-- css lspconfig
-			lspconfig.cssls.setup({
-				capabilities = capabilities,
-				on_attach = on_attach,
-				on_init = on_init,
-			})
-
-			-- Python lspconfig
-			lspconfig.pyright.setup({
-				capabilities = capabilities,
-				on_attach = on_attach,
-				on_init = on_init,
-			})
+				lspconfig[server].setup(opts)
+			end
 		end,
 	},
 }
