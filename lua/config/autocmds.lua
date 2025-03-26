@@ -30,3 +30,19 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 	desc = "Set 4-space indentation for C# files",
 })
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+	group = autocmd_group,
+	pattern = "*",
+	callback = function()
+		local bufferline = require("bufferline")
+		local opts = {
+			options = {
+				mods = "tabs",
+				separator_style = vim.g.colors_name == "solarized-osaka" and "thin" or "slant",
+				numbers = "buffer_id",
+			},
+		}
+		bufferline.setup(opts)
+	end,
+})

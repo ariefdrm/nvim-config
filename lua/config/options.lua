@@ -69,3 +69,6 @@ vim.opt.fileencoding = "utf-8"
 
 -- Disable mode display since statusline plugins can show it
 vim.opt.showmode = false
+
+-- Set the colorscheme
+vim.cmd([[colorscheme catppuccin]])

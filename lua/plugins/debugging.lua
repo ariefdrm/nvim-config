@@ -59,8 +59,13 @@ return {
 			dap.configurations.rust = dap.configurations.cpp
 
 			-- keymaps
-			vim.keymap.set("n", "<leader>dt", dap.toggle_breakpoint, {})
+			vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, {})
 			vim.keymap.set("n", "<leader>dc", dap.continue, {})
+			vim.keymap.set("n", "<leader>ds", dap.step_over, {})
+			vim.keymap.set("n", "<leader>di", dap.step_into, {})
+			vim.keymap.set("n", "<leader>do", dap.step_out, {})
+			vim.keymap.set("n", "<leader>dl", dap.run_last, {})
+			vim.keymap.set("n", "<leader>dt", dap.terminate, {})
 		end,
 	},
 }

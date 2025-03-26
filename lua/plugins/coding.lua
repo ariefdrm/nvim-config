@@ -47,7 +47,7 @@ return {
 	{
 		"smjonas/inc-rename.nvim",
 		config = function()
-			require("inc_rename").setup()
+			require("inc_rename").setup({})
 		end,
 	},
 
@@ -65,10 +65,11 @@ return {
 					css = { "prettier", "prettierd" },
 					javascript = { "prettier", "prettierd" },
 					typescript = { "prettier", "prettierd" },
-					csharp = { "clang-format" },
+					csharp = { "csharpier" },
 					cpp = { "clang-format" },
 					lua = { "stylua" },
-					python = { "black" },
+					python = { "black", "isort" },
+					dart = { "dart_format" },
 				},
 				format_on_save = {
 					timeout_ms = 1000, -- Set a timeout for formatting
@@ -99,8 +100,9 @@ return {
 			local lint = require("lint")
 			-- Example configuration: enable eslint_d for JavaScript and TypeScript
 			lint.linters_by_ft = {
-				javascript = { "eslint_d" },
-				typescript = { "eslint_d" },
+				javascript = { "eslint" },
+				typescript = { "eslint" },
+				python = { "pylint" },
 			}
 
 			-- Automatically lint on save

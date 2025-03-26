@@ -1,3 +1,4 @@
+---@diagnostic disable: unused-local
 -- Lsp server config
 return {
 	{
@@ -39,10 +40,10 @@ return {
 				-- Ensure installed lsp, linter, formatter, dap
 				ensure_installed = {
 					-- Uncomment or add this section if you want install linter and formatter
-					-- "prettierd",
+					"prettier",
 					-- "codelldb",
 					-- "cpplint",
-					-- "clang-format",
+					"clang-format",
 					"stylua",
 					-- "csharpier",
 					-- "eslint_d",
@@ -59,10 +60,14 @@ return {
 
 			-- List of LSP servers
 			local servers = {
+				"html", -- Html
+				"cssls", -- Css
+				"emmet_ls", -- emmet_ls
 				"lua_ls", -- Lua
 				"pyright", -- Python
 				"ts_ls", -- TypeScript/JavaScript
 				"clangd", -- C/C++
+				"dartls", -- Dart
 			}
 
 			-- LSP keybindings and on_attach function
@@ -79,6 +84,9 @@ return {
 				keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
 				keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 				keymap("n", "gr", vim.lsp.buf.references, opts)
+				keymap("n", "gl", vim.diagnostic.open_float, opts)
+        keymap("n", "gp", vim.diagnostic.goto_prev, opts)
+        keymap("n", "gn", vim.diagnostic.goto_next, opts)
 			end
 
 			-- Extend capabilities with nvim-cmp
@@ -100,6 +108,17 @@ return {
 							workspace = { library = vim.api.nvim_get_runtime_file("", true) },
 							telemetry = { enable = false },
 						},
+					}
+				end
+
+				if server == "html" then
+					opts.inits_options = {
+						configurationSection = { "html", "css", "javascript" },
+						embeddedLanguages = {
+							css = true,
+							javascript = true,
+						},
+						provideFormatter = true,
 					}
 				end
 
