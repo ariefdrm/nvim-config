@@ -30,6 +30,7 @@ keymap("n", "<leader>sh", "<C-w>s", opts) -- Split window horizontally
 
 -- Nvim tree
 keymap("n", "<leader>e", ":Neotree reveal<CR>", opts) -- nvim tree
+-- keymap("n", "<leader>e", ":NvimTreeOpen<CR>", opts)
 
 -- Mapping/Keybindings for bufferline
 keymap("n", "<TAB>", ":BufferLineCycleNext<CR>", opts) -- Move next buffer
@@ -56,8 +57,8 @@ keymap("n", "-", "<C-x>", opts) -- Decrement
 keymap("n", "<leader>rn", ":IncRename ", opts)
 
 -- ToggleTerm
-keymap("n", "<leader>tf", "<cmd>ToggleTerm <CR>", opts) -- Open terminal
-keymap("t", "<Esc>", "<C-\\><C-n><cmd>ToggleTerm<CR>", opts) -- Keybinding to close terminal with Esc
+-- keymap("n", "<leader>tf", "<cmd>ToggleTerm <CR>", opts) -- Open terminal
+-- keymap("t", "<Esc>", "<C-\\><C-n><cmd>ToggleTerm<CR>", opts) -- Keybinding to close terminal with Esc
 
 -- git signs
 keymap("n", "<leader>gs", ":Gitsigns<CR>", opts)

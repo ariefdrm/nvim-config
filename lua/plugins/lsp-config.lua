@@ -29,7 +29,9 @@ return {
 					-- "clangd",
 					-- "html",
 					-- "cssls",
+					-- "emmet_ls",
 					-- "ts_ls",
+					-- "pyright",
 				},
 			})
 
@@ -40,10 +42,10 @@ return {
 				-- Ensure installed lsp, linter, formatter, dap
 				ensure_installed = {
 					-- Uncomment or add this section if you want install linter and formatter
-					"prettier",
+					-- "prettier",
 					-- "codelldb",
 					-- "cpplint",
-					"clang-format",
+					-- "clang-format",
 					"stylua",
 					-- "csharpier",
 					-- "eslint_d",
@@ -68,6 +70,7 @@ return {
 				"ts_ls", -- TypeScript/JavaScript
 				"clangd", -- C/C++
 				"dartls", -- Dart
+				"volar", -- Vue
 			}
 
 			-- LSP keybindings and on_attach function
@@ -85,12 +88,16 @@ return {
 				keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 				keymap("n", "gr", vim.lsp.buf.references, opts)
 				keymap("n", "gl", vim.diagnostic.open_float, opts)
-        keymap("n", "gp", vim.diagnostic.goto_prev, opts)
-        keymap("n", "gn", vim.diagnostic.goto_next, opts)
+				keymap("n", "<leader>dl", vim.diagnostic.setloclist, opts)
 			end
 
 			-- Extend capabilities with nvim-cmp
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+			-- for vue lsp
+			local mason_registry = require("mason-registry")
+			local vue_lsp = mason_registry.get_package("vue-language-server"):get_install_path()
+				.. "/node_modules/@vue/language-server"
 
 			-- Loop over each server to set up LSP configurations
 			for _, server in ipairs(servers) do
@@ -117,9 +124,24 @@ return {
 						embeddedLanguages = {
 							css = true,
 							javascript = true,
+							typescript = true,
 						},
-						provideFormatter = true,
+						provideFormatter = "prettier",
 					}
+					opts.filetypes = { "html", "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" }
+				end
+
+				if server == "ts_ls" then
+					opts.inits_options = {
+						plugins = {
+							{
+								name = "@vue/typescript-plugin",
+								location = vue_lsp,
+								languages = { "vue" },
+							},
+						},
+					}
+					opts.filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" }
 				end
 
 				lspconfig[server].setup(opts)
