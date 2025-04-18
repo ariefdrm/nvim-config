@@ -24,15 +24,20 @@ keymap("n", "<leader>x", ":xa<CR>", opts) -- Save and quit
 keymap("n", "<leader>sc", ":nohlsearch<cr>", opts) -- clear highlight search
 keymap("i", "kj", "<Esc>", opts) -- exit insert mode
 keymap("n", ";", ":", { noremap = true, silent = false }) -- ; to :
+keymap("n", "<leader>sv", "<C-w>v", opts) -- Split window vertically
+keymap("n", "<leader>sh", "<C-w>s", opts) -- Split window horizontally
+-- keymap("n", "<leader>ef", ":Ex<CR>", opts)
 
 -- Nvim tree
 keymap("n", "<leader>e", ":Neotree reveal<CR>", opts) -- nvim tree
+-- keymap("n", "<leader>e", ":NvimTreeOpen<CR>", opts)
 
 -- Mapping/Keybindings for bufferline
 keymap("n", "<TAB>", ":BufferLineCycleNext<CR>", opts) -- Move next buffer
 keymap("n", "<S-TAB>", ":BufferLineCyclePrev<CR>", opts) -- Move prev buffer
 keymap("n", "<leader>bc", ":BufferLinePickClose<CR>", opts) -- Close current buffer
 keymap("n", "<leader>cb", ":bd<CR>", opts) -- Close current buffer
+keymap("n", "<leader>bl", ":BufferLineCloseLeft<CR>", opts) -- Close left buffers
 
 -- Telescope
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts) -- Find files
@@ -52,8 +57,8 @@ keymap("n", "-", "<C-x>", opts) -- Decrement
 keymap("n", "<leader>rn", ":IncRename ", opts)
 
 -- ToggleTerm
-keymap("n", "<leader>tf", "<cmd>ToggleTerm <CR>", opts) -- Open terminal
-keymap("t", "<Esc>", "<C-\\><C-n><cmd>ToggleTerm<CR>", opts) -- Keybinding to close terminal with Esc
+-- keymap("n", "<leader>tf", "<cmd>ToggleTerm <CR>", opts) -- Open terminal
+-- keymap("t", "<Esc>", "<C-\\><C-n><cmd>ToggleTerm<CR>", opts) -- Keybinding to close terminal with Esc
 
 -- git signs
 keymap("n", "<leader>gs", ":Gitsigns<CR>", opts)

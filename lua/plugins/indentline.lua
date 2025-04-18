@@ -32,6 +32,7 @@ return {
 						"lazyterm",
 						"mason",
 						"neo-tree",
+						"nvimtree",
 						"notify",
 						"toggleterm",
 						"Trouble",

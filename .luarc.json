@@ -5,7 +5,8 @@
         "config",
         "dap",
         "async",
-        "j"
+        "j",
+        "init_options"
     ],
     "diagnostics.disable": [
         "redundant-value",

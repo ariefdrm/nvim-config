@@ -74,7 +74,5 @@ return {
 				symbols_outline = true,
 			},
 		})
-		-- Set the colorscheme
-		vim.cmd([[colorscheme catppuccin]])
 	end,
 }
