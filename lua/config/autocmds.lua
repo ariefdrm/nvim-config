@@ -46,3 +46,12 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 		bufferline.setup(opts)
 	end,
 })
+
+-- blade syntax highlighting
+vim.api.nvim_create_autocmd("FileType", {
+	group = autocmd_group,
+	pattern = "blade",
+	callback = function()
+		vim.bo.filetype = "php" -- Treat Blade files as PHP for syntax highlighting
+	end,
+})

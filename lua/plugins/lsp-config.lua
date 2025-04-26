@@ -62,15 +62,14 @@ return {
 
 			-- List of LSP servers
 			local servers = {
-				"html", -- Html
 				"cssls", -- Css
 				"emmet_ls", -- emmet_ls
-				"lua_ls", -- Lua
 				"pyright", -- Python
-				"ts_ls", -- TypeScript/JavaScript
 				"clangd", -- C/C++
 				"dartls", -- Dart
 				"volar", -- Vue
+				"intelephense", -- PHP
+				-- "phpactor",
 			}
 
 			-- LSP keybindings and on_attach function
@@ -106,46 +105,71 @@ return {
 					capabilities = capabilities,
 				}
 
-				-- Custom settings for lua_ls
-				if server == "lua_ls" then
-					opts.settings = {
-						Lua = {
-							runtime = { version = "LuaJIT" },
-							diagnostics = { globals = { "vim" } },
-							workspace = { library = vim.api.nvim_get_runtime_file("", true) },
-							telemetry = { enable = false },
-						},
-					}
-				end
-
-				if server == "html" then
-					opts.inits_options = {
-						configurationSection = { "html", "css", "javascript" },
-						embeddedLanguages = {
-							css = true,
-							javascript = true,
-							typescript = true,
-						},
-						provideFormatter = "prettier",
-					}
-					opts.filetypes = { "html", "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" }
-				end
-
-				if server == "ts_ls" then
-					opts.inits_options = {
-						plugins = {
-							{
-								name = "@vue/typescript-plugin",
-								location = vue_lsp,
-								languages = { "vue" },
-							},
-						},
-					}
-					opts.filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" }
-				end
-
 				lspconfig[server].setup(opts)
 			end
+
+			-- Custom settings for lsp server
+			lspconfig.lua_ls.setup({
+				on_attach = on_attach,
+				capabilities = capabilities,
+				settings = {
+					Lua = {
+						runtime = { version = "LuaJIT" },
+						diagnostics = { globals = { "vim" } },
+						workspace = { library = vim.api.nvim_get_runtime_file("", true) },
+						telemetry = { enable = false },
+					},
+				},
+			})
+
+			lspconfig.html.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+				inits_options = {
+					configurationSection = { "html", "css", "javascript" },
+					embeddedLanguages = {
+						css = true,
+						javascript = true,
+					},
+					provideFormatter = "prettier",
+				},
+				filetypes = { "html", "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
+			})
+
+			lspconfig.ts_ls.setup({
+				inits_options = {
+					plugins = {
+						{
+							name = "@vue/typescript-plugin",
+							location = vue_lsp,
+							languages = { "vue" },
+						},
+					},
+				},
+				filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+			})
+		end,
+	},
+
+	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		opts = {},
+		config = function()
+			require("typescript-tools").setup({
+				on_attach = on_attach,
+				filetypes = {
+					"javascript",
+					"typescript",
+					"vue",
+				},
+				settings = {
+					single_file_support = false,
+					tsserver_plugins = {
+						"@vue/typescript-plugin",
+					},
+				},
+			})
 		end,
 	},
 }

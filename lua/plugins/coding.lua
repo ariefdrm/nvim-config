@@ -71,6 +71,7 @@ return {
 					lua = { "stylua" },
 					python = { "black", "isort" },
 					dart = { "dart_format" },
+					php = { "intelephense" },
 				},
 				format_on_save = {
 					timeout_ms = 1000, -- Set a timeout for formatting
