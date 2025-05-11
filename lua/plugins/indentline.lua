@@ -32,13 +32,13 @@ return {
 						"lazyterm",
 						"mason",
 						"neo-tree",
-						"nvimtree",
 						"notify",
 						"toggleterm",
 						"Trouble",
 						"trouble",
 						"dbee",
 						"dbui",
+						"nvimtree",
 					},
 					callback = function()
 						vim.b.miniindentscope_disable = true
