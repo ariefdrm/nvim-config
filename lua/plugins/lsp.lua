@@ -84,6 +84,24 @@ return {
 				filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "html" },
 			})
 
+			vim.lsp.config("dartls", {
+				filetypes = { "dart" },
+				init_options = {
+					closingLabels = true,
+					flutterOutline = true,
+					onlyAnalyzeProjectsWithOpenFiles = true,
+					outline = true,
+					suggestFromUnimportedLibraries = true,
+				},
+				root_markers = { "pubspec.yaml", "pubspec.yml", "pubspec.lock", "pubspec.json" },
+				settings = {
+					dart = {
+						completeFunctionCalls = true,
+						showTodos = true,
+					},
+				},
+			})
+
 			-- activate lsp servers
 			vim.lsp.enable(servers)
 
