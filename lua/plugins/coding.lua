@@ -55,8 +55,8 @@ return {
 	{
 		"stevearc/conform.nvim",
 		dependencies = {
-"mason-org/mason.nvim",
-    "mason-org/mason-lspconfig.nvim",
+			"mason-org/mason.nvim",
+			"mason-org/mason-lspconfig.nvim",
 		},
 		config = function()
 			require("conform").setup({
