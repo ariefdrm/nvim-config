@@ -1,14 +1,28 @@
 return {
+	-- add blink.compat
+	{
+		"saghen/blink.compat",
+		-- use the latest release, via version = '*', if you also use the latest release for blink.cmp
+		version = "*",
+		-- lazy.nvim will automatically load the plugin when it's required by blink.cmp
+		lazy = true,
+		-- make sure to set opts so that lazy.nvim calls blink.compat's setup
+		opts = {},
+	},
 	-- Blink cmp
 	{
 		"Saghen/blink.cmp",
-		dependencies = { "rafamadriz/friendly-snippets" },
+		dependencies = {
+			"rafamadriz/friendly-snippets",
+			{ "L3MON4D3/LuaSnip", version = "v2.*" },
+		},
 		Event = "InsertEnter",
 		version = "1.*",
 
 		---@module 'blink.cmp'
 		---@type blink.cmp.Config
 		opts = {
+			snippets = { preset = "luasnip" },
 			keymap = {
 				preset = "none",
 				["<Tab>"] = { "select_next", "fallback" },

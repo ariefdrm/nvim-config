@@ -75,6 +75,7 @@ return {
 				},
 				format_on_save = {
 					timeout_ms = 1000, -- Set a timeout for formatting
+					lsp_format = "fallback",
 				},
 			})
 

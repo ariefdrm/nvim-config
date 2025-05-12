@@ -22,7 +22,8 @@ return {
 		config = function()
 			require("mason-tool-installer").setup({
 				ensure_installed = {
-					"prettier",
+					"stylua",
+					-- "prettier",
 				},
 			})
 		end,
@@ -39,14 +40,15 @@ return {
 		config = function()
 			-- List of LSP servers
 			local servers = {
-				"cssls", -- Css
-				"emmet_ls", -- emmet_ls
-				"pyright", -- Python
-				"clangd", -- C/C++
+				"lua_ls",
+				-- "cssls", -- Css
+				-- "emmet_ls", -- emmet_ls
+				-- "pyright", -- Python
+				-- "clangd", -- C/C++
 				-- "dartls", -- Dart
-				"volar", -- Vue
-				"ts_ls", -- javascript/typescript
-				"intelephense", -- PHP
+				-- "volar", -- Vue
+				-- "ts_ls", -- javascript/typescript
+				-- "intelephense", -- PHP
 			}
 
 			require("mason-lspconfig").setup({
@@ -84,6 +86,24 @@ return {
 				filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "html" },
 			})
 
+			vim.lsp.config("dartls", {
+				filetypes = { "dart" },
+				init_options = {
+					closingLabels = true,
+					flutterOutline = true,
+					onlyAnalyzeProjectsWithOpenFiles = true,
+					outline = true,
+					suggestFromUnimportedLibraries = true,
+				},
+				root_markers = { "pubspec.yaml", "pubspec.yml", "pubspec.lock", "pubspec.json" },
+				settings = {
+					dart = {
+						completeFunctionCalls = true,
+						showTodos = true,
+					},
+				},
+			})
+
 			-- activate lsp servers
 			vim.lsp.enable(servers)
 
@@ -109,24 +129,20 @@ return {
 	},
 
 	{
-		"pmizio/typescript-tools.nvim",
-		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-		opts = {},
-		config = function()
-			require("typescript-tools").setup({
-				filetypes = {
-					"javascript",
-					"typescript",
-					"vue",
-					-- "html",
-				},
-				settings = {
-					single_file_support = false,
-					tsserver_plugins = {
-						"@vue/typescript-plugin",
-					},
-				},
-			})
-		end,
+		"nvim-flutter/flutter-tools.nvim",
+		lazy = false,
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"stevearc/dressing.nvim", -- optional for vim.ui.select
+		},
+		config = true,
+		opts = {
+			ui = {
+				border = "rounded",
+			},
+			widget_guides = {
+				enabled = true,
+			},
+		},
 	},
 }
