@@ -9,7 +9,6 @@ return {
 		-- make sure to set opts so that lazy.nvim calls blink.compat's setup
 		opts = {},
 	},
-	
 	-- Blink cmp
 	{
 		"Saghen/blink.cmp",

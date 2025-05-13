@@ -35,7 +35,6 @@ return {
 		dependencies = {
 			"mason-org/mason.nvim",
 			"neovim/nvim-lspconfig",
-			"mason-org/mason-registry",
 		},
 		config = function()
 			-- List of LSP servers
