@@ -9,19 +9,19 @@ return {
 	-- Fugitive Vim
 	{ "tpope/vim-fugitive" },
 	-- Lazygit
-	{
-		"kdheepak/lazygit.nvim",
-		cmd = {
-			"LazyGit",
-			"LazyGitConfig",
-			"LazyGitCurrentFile",
-			"LazyGitFilter",
-			"LazyGitFilterCurrentFile",
-		},
-		-- optional for floating window border decoration
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope.nvim",
-		},
-	},
+	-- {
+	-- 	"kdheepak/lazygit.nvim",
+	-- 	cmd = {
+	-- 		"LazyGit",
+	-- 		"LazyGitConfig",
+	-- 		"LazyGitCurrentFile",
+	-- 		"LazyGitFilter",
+	-- 		"LazyGitFilterCurrentFile",
+	-- 	},
+	-- 	-- optional for floating window border decoration
+	-- 	dependencies = {
+	-- 		"nvim-lua/plenary.nvim",
+	-- 		"nvim-telescope/telescope.nvim",
+	-- 	},
+	-- },
 }

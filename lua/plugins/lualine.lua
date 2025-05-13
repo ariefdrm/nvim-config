@@ -1,6 +1,5 @@
 return {
 	"nvim-lualine/lualine.nvim",
-	lazy = false, -- Load the plugin immediately
 	config = function()
 		-- Load the Lualine config
 		require("lualine").setup({

@@ -4,11 +4,7 @@ return {
 		tag = "0.1.8",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope-file-browser.nvim",
-			{
-				"nvim-telescope/telescope-fzf-native.nvim",
-				build = "make",
-			},
+			-- "nvim-telescope/telescope-file-browser.nvim",
 		}, -- telescope dependency
 		config = function()
 			-- load telescope config
@@ -49,9 +45,9 @@ return {
 				},
 
 				-- load extension
-				require("telescope").load_extension("lazygit"),
-				require("telescope").load_extension("file_browser"),
-				require("telescope").load_extension("fzf"),
+				-- require("telescope").load_extension("lazygit"),
+				-- require("telescope").load_extension("file_browser"),
+				-- require("telescope").load_extension("fzf"),
 			})
 		end,
 	},

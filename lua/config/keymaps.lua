@@ -56,10 +56,6 @@ keymap("n", "-", "<C-x>", opts) -- Decrement
 -- Inc-Rename
 keymap("n", "<leader>rn", ":IncRename ", opts)
 
--- ToggleTerm
--- keymap("n", "<leader>tf", "<cmd>ToggleTerm <CR>", opts) -- Open terminal
--- keymap("t", "<Esc>", "<C-\\><C-n><cmd>ToggleTerm<CR>", opts) -- Keybinding to close terminal with Esc
-
 -- git signs
 keymap("n", "<leader>gs", ":Gitsigns<CR>", opts)
 keymap("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", opts)

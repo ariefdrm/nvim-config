@@ -12,6 +12,7 @@
         "redundant-value",
         "undefined-global",
         "redefined-local",
-        "missing-fields"
+        "missing-fields",
+        "undefined-doc-name"
     ]
 }
