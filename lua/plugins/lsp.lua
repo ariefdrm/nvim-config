@@ -34,7 +34,7 @@ return {
 		dependencies = {
 			"mason-org/mason.nvim",
 			"neovim/nvim-lspconfig",
-			"mason-org/mason-registry",
+			-- "mason-org/mason-registry",
 		},
 		config = function()
 			-- List of LSP servers
@@ -126,6 +126,7 @@ return {
 		end,
 	},
 
+	-- typescript-tools
 	{
 		"pmizio/typescript-tools.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
@@ -143,6 +144,23 @@ return {
 					tsserver_plugins = {
 						"@vue/typescript-plugin",
 					},
+				},
+			})
+		end,
+	},
+
+	-- Codeium
+	{
+		"Exafunction/codeium.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"hrsh7th/nvim-cmp",
+		},
+		config = function()
+			require("codeium").setup({
+				virtual_text = {
+					enable = true,
+					filetypes = {},
 				},
 			})
 		end,
