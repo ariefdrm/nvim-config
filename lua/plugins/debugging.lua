@@ -5,7 +5,7 @@ return {
 		dependencies = {
 			"rcarriga/nvim-dap-ui",
 			"nvim-neotest/nvim-nio",
- "mason-org/mason.nvim",
+			"mason-org/mason.nvim",
 			"jay-babu/mason-nvim-dap.nvim",
 		},
 		config = function()
@@ -64,7 +64,7 @@ return {
 			vim.keymap.set("n", "<leader>ds", dap.step_over, {})
 			vim.keymap.set("n", "<leader>di", dap.step_into, {})
 			vim.keymap.set("n", "<leader>do", dap.step_out, {})
-			vim.keymap.set("n", "<leader>dl", dap.run_last, {})
+			-- vim.keymap.set("n", "<leader>dl", dap.run_last, {})
 			vim.keymap.set("n", "<leader>dt", dap.terminate, {})
 		end,
 	},

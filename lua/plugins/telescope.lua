@@ -17,6 +17,7 @@ return {
 			telescope.setup({
 				defaults = {
 					-- your existing config
+					initial_mode = "insert",
 				},
 				pickers = {
 					live_grep = {
@@ -34,6 +35,7 @@ return {
 
 					file_browser = {
 						theme = "ivy",
+						initial_mode = "normal",
 						-- disable netrw and use telescope-file-browser in the place
 
 						hijack_netrw = true,

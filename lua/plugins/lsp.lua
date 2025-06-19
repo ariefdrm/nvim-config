@@ -39,20 +39,25 @@ return {
 		config = function()
 			-- List of LSP servers
 			local servers = {
+				"lua_ls", -- Lua
+				"html", -- html
 				"cssls", -- Css
 				"emmet_ls", -- emmet_ls
-				"pyright", -- Python
+				-- "pyright", -- Python
 				"clangd", -- C/C++
 				-- "dartls", -- Dart
-				"volar", -- Vue
-				"ts_ls", -- javascript/typescript
-				"intelephense", -- PHP
+				"vue_ls", -- Vue
+				-- "ts_ls", -- javascript/typescript
+				-- "intelephense", -- PHP
 			}
 
 			require("mason-lspconfig").setup({
 				automatic_enable = false,
 				ensure_installed = servers,
 			})
+			--Enable (broadcasting) snippet capability for completion
+			local capabilities = vim.lsp.protocol.make_client_capabilities()
+			capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 			-- custom config for lua_ls
 			vim.lsp.config("lua_ls", {
@@ -64,6 +69,11 @@ return {
 						telemetry = { enable = false },
 					},
 				},
+			})
+
+			vim.lsp.config("html", {
+				capabilities = capabilities,
+				filetypes = { "html", "css", "ejs", "javascript", "javascriptreact", "typescript", "typescriptreact" },
 			})
 
 			vim.lsp.config("cssls", {
@@ -81,7 +91,7 @@ return {
 					"package.json",
 					".git",
 				},
-				filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "html" },
+				filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "html", "vue" },
 			})
 
 			vim.lsp.config("dartls", {
@@ -107,6 +117,35 @@ return {
 
 			-- activate individual server
 			vim.lsp.enable("dartls")
+			vim.lsp.enable("pyright")
+
+			-- vim lsp diagnostic
+			vim.diagnostic.config({
+				virtual_text = true,
+				underline = true,
+				update_in_insert = false,
+				severity_sort = true,
+				signs = {
+					severity = {
+						min = vim.diagnostic.severity.WARN,
+						max = vim.diagnostic.severity.ERROR,
+					},
+
+					float = {
+						focusable = false,
+						style = "minimal",
+						border = "rounded",
+						source = "always",
+					},
+
+					signs = {
+						hint = "",
+						info = "",
+						warn = "",
+						error = "",
+					},
+				},
+			})
 
 			-- lsp keybinding
 			local keymap = vim.keymap.set
@@ -130,37 +169,24 @@ return {
 	{
 		"pmizio/typescript-tools.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-		opts = {},
 		config = function()
 			require("typescript-tools").setup({
-				filetypes = {
-					"javascript",
-					"typescript",
-					"vue",
-					-- "html",
-				},
+				filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "html", "vue" },
 				settings = {
 					single_file_support = false,
 					tsserver_plugins = {
 						"@vue/typescript-plugin",
 					},
-				},
-			})
-		end,
-	},
 
-	-- Codeium
-	{
-		"Exafunction/codeium.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"hrsh7th/nvim-cmp",
-		},
-		config = function()
-			require("codeium").setup({
-				virtual_text = {
-					enable = true,
-					filetypes = {},
+					tsserver_file_preferences = {
+						includeInlayParameterNameHints = "all",
+						includeCompletionsForModuleExports = true,
+						quotePreference = "auto",
+					},
+					tsserver_format_options = {
+						allowIncompleteCompletions = false,
+						allowRenameOfImportPath = false,
+					},
 				},
 			})
 		end,
