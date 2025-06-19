@@ -1,7 +1,7 @@
 return {
 	{
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.8",
+		-- tag = "0.1.8",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope-file-browser.nvim",
@@ -17,6 +17,7 @@ return {
 			telescope.setup({
 				defaults = {
 					-- your existing config
+					initial_mode = "insert",
 				},
 				pickers = {
 					live_grep = {
@@ -34,6 +35,7 @@ return {
 
 					file_browser = {
 						theme = "ivy",
+						initial_mode = "normal",
 						-- disable netrw and use telescope-file-browser in the place
 
 						hijack_netrw = true,

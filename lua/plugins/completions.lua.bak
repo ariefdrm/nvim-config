@@ -27,8 +27,16 @@ return {
 			snippets = { preset = "luasnip" },
 			keymap = {
 				preset = "none",
-				["<Tab>"] = { "select_next", "fallback" },
-				["<S-Tab>"] = { "select_prev", "fallback" }, -- show with a list of providers
+				["<Tab>"] = {
+					function(cmp)
+						cmp.select_next({ auto_insert = false, on_ghost_text = true })
+					end,
+				},
+				["<S-Tab>"] = {
+					function(cmp)
+						cmp.select_prev({ auto_insert = false, on_ghost_text = true })
+					end,
+				}, -- show with a list of providers
 				["<C-l>"] = {
 					function(cmp)
 						cmp.show({ providers = { "lsp", "path", "snippets", "buffer", "codeium" } })
@@ -90,23 +98,17 @@ return {
 			},
 			fuzzy = { implementation = "prefer_rust_with_warning" },
 		},
-		opts_extend = { "sources.default" },
-	},
 
-	-- Codeium
-	{
-		"Exafunction/codeium.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"hrsh7th/nvim-cmp",
+		cmdline = {
+			keymap = {
+				["<Tab>"] = { "show_and_insert", "select_next" },
+				["<S-Tab>"] = { "show_and_insert", "select_prev" },
+				["<CR>"] = { "select_and_accept", "fallback" },
+				["<C-l>"] = { "show" },
+			},
+			completion = { menu = { auto_show = true }, ghost_text = { enabled = true } },
 		},
-		config = function()
-			require("codeium").setup({
-				virtual_text = {
-					enable = true,
-					filetypes = {},
-				},
-			})
-		end,
+
+		opts_extend = { "sources.default" },
 	},
 }
