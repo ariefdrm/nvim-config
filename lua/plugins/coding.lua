@@ -73,8 +73,8 @@ return {
 					dart = { "dart_format" },
 					php = { "intelephense" },
 				},
-				format_on_save = {
-					timeout_ms = 1000, -- Set a timeout for formatting
+				format_after_save = {
+					timeout_ms = 500, -- Set a timeout for formatting
 					lsp_format = "fallback",
 				},
 			})
