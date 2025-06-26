@@ -46,14 +46,16 @@ return {
 				-- "clangd", -- C/C++
 				-- "dartls", -- Dart
 				-- "volar", -- Vue
-				-- "ts_ls", -- javascript/typescript
-				-- "intelephense", -- PHP
+				-- "intelephense",
 			}
 
 			require("mason-lspconfig").setup({
 				automatic_enable = false,
 				ensure_installed = servers,
 			})
+			--Enable (broadcasting) snippet capability for completion
+			local capabilities = vim.lsp.protocol.make_client_capabilities()
+			capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 			-- custom config for lua_ls
 			vim.lsp.config("lua_ls", {
@@ -65,6 +67,11 @@ return {
 						telemetry = { enable = false },
 					},
 				},
+			})
+
+			vim.lsp.config("html", {
+				capabilities = capabilities,
+				filetypes = { "html", "css", "ejs", "javascript", "javascriptreact", "typescript", "typescriptreact" },
 			})
 
 			vim.lsp.config("cssls", {
@@ -82,7 +89,7 @@ return {
 					"package.json",
 					".git",
 				},
-				filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "html" },
+				filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "html", "vue" },
 			})
 
 			vim.lsp.config("dartls", {
@@ -108,6 +115,35 @@ return {
 
 			-- activate individual server
 			vim.lsp.enable("dartls")
+			vim.lsp.enable("pyright")
+
+			-- vim lsp diagnostic
+			vim.diagnostic.config({
+				virtual_text = true,
+				underline = true,
+				update_in_insert = false,
+				severity_sort = true,
+				signs = {
+					severity = {
+						min = vim.diagnostic.severity.WARN,
+						max = vim.diagnostic.severity.ERROR,
+					},
+
+					float = {
+						focusable = false,
+						style = "minimal",
+						border = "rounded",
+						source = "always",
+					},
+
+					signs = {
+						hint = "",
+						info = "",
+						warn = "",
+						error = "",
+					},
+				},
+			})
 
 			-- lsp keybinding
 			local keymap = vim.keymap.set
@@ -127,6 +163,7 @@ return {
 		end,
 	},
 
+	-- typescript-tools
 	{
 		"nvim-flutter/flutter-tools.nvim",
 		lazy = false,

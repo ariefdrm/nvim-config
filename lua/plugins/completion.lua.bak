@@ -38,16 +38,6 @@ return {
 						},
 					}),
 				},
-				-- window = {
-				-- 	documentation = {
-				-- 		border = "rounded", -- Border style: 'single', 'double', 'rounded', 'shadow', or custom
-				-- 		winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
-				-- 	},
-				-- 	completion = {
-				-- 		border = "rounded",
-				-- 		winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
-				-- 	},
-				-- },
 				snippet = {
 					expand = function(args)
 						luasnip.lsp_expand(args.body)
