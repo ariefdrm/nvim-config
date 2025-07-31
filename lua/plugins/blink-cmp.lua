@@ -16,6 +16,7 @@ return { -- add blink.compat
 			"rafamadriz/friendly-snippets",
 			"onsails/lspkind.nvim",
 			"fang2hou/blink-copilot",
+			"Exafunction/windsurf.nvim",
 			"nvim-tree/nvim-web-devicons",
 			{ "L3MON4D3/LuaSnip", version = "v2.*" },
 		},
@@ -25,16 +26,36 @@ return { -- add blink.compat
 		---@module 'blink.cmp'
 		---@diagnostic disable-next-line: undefined-doc-name
 		---@type blink.cmp.Config
+		opts_extend = {
+			"sources.completion.enabled_providers",
+			"sources.compat",
+			"sources.default",
+		},
 		opts = {
 			-- Use a preset for snippets, check the snippets documentation for more information
 			snippets = {
-				preset = "default", -- "default" | "luasnip" | "mini_snippets"
+				preset = "luasnip", -- "default" | "luasnip" | "mini_snippets"
+
+				-- Function to use when expanding LSP provided snippets
+				expand = function(snippet)
+					vim.snippet.expand(snippet)
+				end,
+				-- Function to use when checking if a snippet is active
+				active = function(filter)
+					return vim.snippet.active(filter)
+				end,
+				-- Function to use when jumping between tab stops in a snippet, where direction can be negative or positive
+				jump = function(direction)
+					vim.snippet.jump(direction)
+				end,
 			},
 
 			keymap = {
 				preset = "none",
-				["<Tab>"] = { "snippet_forward", "select_next", "fallback" },
-				["<S-Tab>"] = { "snippet_backward", "select_prev", "fallback" },
+				-- ["<Tab>"] = { "snippet_forward", "select_next", "fallback" },
+				-- ["<S-Tab>"] = { "snippet_backward", "select_prev", "fallback" },
+				["<Tab>"] = { "select_next", "fallback" },
+				["<S-Tab>"] = { "select_prev", "fallback" },
 				["<C-l>"] = {
 					function(cmp)
 						cmp.show({ providers = { "lsp", "path", "snippets", "buffer" } })
@@ -124,14 +145,21 @@ return { -- add blink.compat
 			},
 
 			sources = {
-				default = { "lsp", "path", "snippets", "buffer", "copilot" },
+				default = { "lazydev", "lsp", "path", "snippets", "buffer", "codeium", "copilot" },
 				providers = {
 					copilot = {
 						name = "copilot",
 						module = "blink-copilot",
-						score_offset = 100,
+						score_offset = 99,
 						async = true,
 					},
+					lazydev = {
+						name = "LazyDev",
+						module = "lazydev.integrations.blink",
+						-- make lazydev completions top priority (see `:h blink.cmp`)
+						score_offset = 100,
+					},
+					codeium = { name = "Codeium", module = "codeium.blink", async = true },
 				},
 			},
 
@@ -140,41 +168,25 @@ return { -- add blink.compat
 
 			fuzzy = { implementation = "prefer_rust_with_warning" },
 		},
-		opts_extend = { "sources.default" },
 	},
 
-	{
-		"zbirenbaum/copilot.lua",
-		enabled = false,
-		cmd = "Copilot",
-		event = "InsertEnter",
-		opts = {
-			suggestion = { enabled = false },
-			panel = { enabled = false },
-			filetypes = {
-				markdown = true,
-				help = true,
-			},
-		},
-	},
-
-	{
-		"github/copilot.vim",
-		cmd = "Copilot",
-		event = "BufWinEnter",
-		init = function()
-			vim.g.copilot_no_maps = true
-		end,
-		config = function()
-			-- Block the normal Copilot suggestions
-			vim.api.nvim_create_augroup("github_copilot", { clear = true })
-			vim.api.nvim_create_autocmd({ "FileType", "BufUnload" }, {
-				group = "github_copilot",
-				callback = function(args)
-					vim.fn["copilot#On" .. args.event]()
-				end,
-			})
-			vim.fn["copilot#OnFileType"]()
-		end,
-	},
+	-- {
+	-- 	"github/copilot.vim",
+	-- 	cmd = "Copilot",
+	-- 	event = "BufWinEnter",
+	-- 	init = function()
+	-- 		vim.g.copilot_no_maps = true
+	-- 	end,
+	-- 	config = function()
+	-- 		-- Block the normal Copilot suggestions
+	-- 		vim.api.nvim_create_augroup("github_copilot", { clear = true })
+	-- 		vim.api.nvim_create_autocmd({ "FileType", "BufUnload" }, {
+	-- 			group = "github_copilot",
+	-- 			callback = function(args)
+	-- 				vim.fn["copilot#On" .. args.event]()
+	-- 			end,
+	-- 		})
+	-- 		vim.fn["copilot#OnFileType"]()
+	-- 	end,
+	-- },
 }

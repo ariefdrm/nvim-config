@@ -65,13 +65,19 @@ return {
 					css = { "prettier", "prettierd" },
 					vue = { "prettier", "prettierd" },
 					javascript = { "prettier", "prettierd" },
+					javascriptreact = { "prettier", "prettierd" },
 					typescript = { "prettier", "prettierd" },
+					typescriptreact = { "prettier", "prettierd" },
+					scss = { "prettier", "prettierd" },
+					jsx = { "prettier", "prettierd" },
 					csharp = { "csharpier" },
 					cpp = { "clang-format" },
 					lua = { "stylua" },
 					python = { "black", "isort" },
 					dart = { "dart_format" },
-					php = { "intelephense" },
+					php = { "php-cs-fixer" },
+					blade = { "blade-formatter" },
+					go = { "gofmt" },
 				},
 				format_after_save = {
 					timeout_ms = 1000, -- Set a timeout for formatting
@@ -114,5 +120,43 @@ return {
 				end,
 			})
 		end,
+	},
+
+	-- Windsurf
+	{
+		"Exafunction/windsurf.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			-- "hrsh7th/nvim-cmp",
+		},
+		config = function()
+			require("codeium").setup({})
+		end,
+	},
+
+	-- Copilot
+	{
+		"zbirenbaum/copilot.lua",
+		enabled = false,
+		cmd = "Copilot",
+		build = ":Copilot auth",
+		event = "BufReadPost",
+		opts = {
+			suggestion = {
+				enabled = not vim.g.ai_cmp,
+				auto_trigger = true,
+				hide_during_completion = vim.g.ai_cmp,
+				keymap = {
+					accept = false, -- handled by nvim-cmp / blink.cmp
+					next = "<M-]>",
+					prev = "<M-[>",
+				},
+			},
+			panel = { enabled = false },
+			filetypes = {
+				markdown = true,
+				help = true,
+			},
+		},
 	},
 }
