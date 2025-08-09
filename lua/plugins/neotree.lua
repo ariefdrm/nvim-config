@@ -9,6 +9,9 @@ return {
 			"nvim-tree/nvim-web-devicons",
 		},
 		opts = {
+			window = {
+				position = "right",
+			},
 			-- fill any relevant options here
 			event_handlers = {
 				-- Auto close on open file
@@ -24,6 +27,7 @@ return {
 			},
 		},
 	},
+
 	{
 		"antosha417/nvim-lsp-file-operations",
 		dependencies = {

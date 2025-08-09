@@ -52,12 +52,13 @@ return {
 			}
 
 			require("mason-lspconfig").setup({
-				automatic_enable = false,
+				automatic_enable = true,
 				ensure_installed = servers,
 			})
+
 			-- --Enable (broadcasting) snippet capability for completion
-			-- local capabilities = vim.lsp.protocol.make_client_capabilities()
-			-- capabilities.textDocument.completion.completionItem.snippetSupport = true
+			local capabilities = vim.lsp.protocol.make_client_capabilities()
+			capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 			local vue_ls_config = {
 				on_init = function(client)
@@ -116,16 +117,13 @@ return {
 				},
 			})
 
+			-- html
 			vim.lsp.config("html", {
 				capabilities = capabilities,
 				filetypes = {
 					"html",
 					"css",
-					"ejs",
-					"blade",
-					-- "vue",
-					"php",
-					"php.blade",
+					"vue",
 					"javascript",
 					"javascriptreact",
 					"typescript",
@@ -133,10 +131,33 @@ return {
 				},
 			})
 
+			-- emmet ls
+			vim.lsp.config("emmet_ls", {
+				filetypes = {
+					"astro",
+					"css",
+					"eruby",
+					"html",
+					"htmlangular",
+					"htmldjango",
+					"javascriptreact",
+					"less",
+					"pug",
+					"sass",
+					"scss",
+					"svelte",
+					"templ",
+					"typescriptreact",
+					"vue",
+				},
+			})
+
+			-- css
 			vim.lsp.config("cssls", {
 				filetypes = { "css", "scss", "less", "html", "vue" },
 			})
 
+			-- javascript / typescript
 			vim.lsp.config("ts_ls", {
 				init_options = {
 					hostInfo = "neovim",
@@ -151,6 +172,7 @@ return {
 				filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "html", "vue" },
 			})
 
+			-- javascript / typescript
 			vim.lsp.config("vtsls", {
 				settings = {
 					vtsls = {
@@ -164,8 +186,10 @@ return {
 				filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 			})
 
+			-- vue lsp
 			vim.lsp.config("vue_ls", vue_ls_config)
 
+			--  dart
 			vim.lsp.config("dartls", {
 				filetypes = { "dart" },
 				init_options = {
@@ -184,6 +208,7 @@ return {
 				},
 			})
 
+			-- php
 			vim.lsp.config("intelephense", {
 				filetypes = { "php", "blade" },
 				root_markers = { "composer.json", "composer.lock", ".git" },

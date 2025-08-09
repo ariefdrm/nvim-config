@@ -29,8 +29,8 @@ keymap("n", "<leader>sh", "<C-w>s", opts) -- Split window horizontally
 -- keymap("n", "<leader>ef", ":Ex<CR>", opts)
 
 -- Nvim tree
-keymap("n", "<leader>e", ":Neotree reveal<CR>", opts) -- nvim tree
--- keymap("n", "<leader>e", ":NvimTreeOpen<CR>", opts)
+keymap("n", "<leader>e", ":Neotree reveal<CR>", opts)
+-- keymap("n", "<leader>e", ":NvimTreeOpen<CR>", opts) -- nvim tree
 
 -- Mapping/Keybindings for bufferline
 keymap("n", "<TAB>", ":BufferLineCycleNext<CR>", opts) -- Move next buffer

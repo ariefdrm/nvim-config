@@ -12,8 +12,8 @@ return { -- add blink.compat
 	{
 		"Saghen/blink.cmp",
 		dependencies = {
-			{ "echasnovski/mini.snippets", version = "*" },
-			"rafamadriz/friendly-snippets",
+			-- { "echasnovski/mini.snippets", version = "*" },
+			-- "rafamadriz/friendly-snippets",
 			"onsails/lspkind.nvim",
 			"fang2hou/blink-copilot",
 			"Exafunction/windsurf.nvim",
@@ -145,7 +145,14 @@ return { -- add blink.compat
 			},
 
 			sources = {
-				default = { "lazydev", "lsp", "path", "snippets", "buffer", "codeium", "copilot" },
+				default = { "lsp", "path", "snippets", "buffer", "codeium", "copilot" },
+
+				per_filetype = {
+					sql = { "dadbod" },
+					-- optionally inherit from the `default` sources
+					lua = { inherit_defaults = true, "lazydev" },
+				},
+
 				providers = {
 					copilot = {
 						name = "copilot",
