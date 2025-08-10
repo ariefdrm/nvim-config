@@ -163,7 +163,7 @@ return {
 			require("bufferline").setup({
 				options = {
 					mods = "tabs",
-					separator_style = "slant",
+					separator_style = "thin", -- slant | slope | thin
 					numbers = "buffer_id",
 				},
 			})

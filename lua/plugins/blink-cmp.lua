@@ -74,7 +74,7 @@ return { -- add blink.compat
 					["<Tab>"] = { "show_and_insert", "select_next" },
 					["<S-Tab>"] = { "show_and_insert", "select_prev" },
 					["<C-l>"] = { "show" },
-					["<CR>"] = { "accept_and_enter", "accept", "fallback" }, --{ "accept", "fallback" },
+					["<CR>"] = { "accept", "accept_and_enter", "fallback" }, --{ "accept", "fallback" },
 				},
 				completion = { menu = { auto_show = true }, ghost_text = { enabled = true } },
 			},

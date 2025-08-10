@@ -22,7 +22,7 @@
   "lualine.nvim": { "branch": "master", "commit": "a94fc68960665e54408fe37dcf573193c4ce82c9" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "f2fa60409630ec2d24acf84494fb55e1d28d593c" },
   "mason-nvim-dap.nvim": { "branch": "main", "commit": "4c2cdc69d69fe00c15ae8648f7e954d99e5de3ea" },
-  "mason-registry": { "branch": "main", "commit": "225b254e4d13c3f372e8ed51410e730de25e761b" },
+  "mason-registry": { "branch": "main", "commit": "2135e867f2b977b05e719285ddc9f2567c57e1ad" },
   "mason-tool-installer.nvim": { "branch": "main", "commit": "517ef5994ef9d6b738322664d5fdd948f0fdeb46" },
   "mason.nvim": { "branch": "main", "commit": "197f6352c276bbc2d25541dfce00ec50d1a4e88f" },
   "mini.indentscope": { "branch": "main", "commit": "f1567c6f46c250b22f4ad1b847a042464742b11d" },
@@ -61,5 +61,6 @@
   "trouble.nvim": { "branch": "main", "commit": "748ca2789044607f19786b1d837044544c55e80a" },
   "typescript-tools.nvim": { "branch": "master", "commit": "3c501d7c7f79457932a8750a2a1476a004c5c1a9" },
   "vim-fugitive": { "branch": "master", "commit": "96c1009fcf8ce60161cc938d149dd5a66d570756" },
+  "vim-tmux-navigator": { "branch": "master", "commit": "85b8e5f60c1690cde57dbb66467ce39cd1b63343" },
   "windsurf.nvim": { "branch": "main", "commit": "821b570b526dbb05b57aa4ded578b709a704a38a" }
 }

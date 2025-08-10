@@ -52,7 +52,7 @@ return {
 			}
 
 			require("mason-lspconfig").setup({
-				automatic_enable = true,
+				automatic_enable = false,
 				ensure_installed = servers,
 			})
 
@@ -234,6 +234,7 @@ return {
 			vim.lsp.enable("vue_ls")
 			vim.lsp.enable("vtsls")
 			vim.lsp.enable("gopls")
+			vim.lsp.enable("tailwindcss")
 
 			-- vim lsp diagnostic
 			vim.diagnostic.config({
