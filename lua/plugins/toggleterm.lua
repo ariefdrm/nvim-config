@@ -15,7 +15,7 @@ return {
 			end,
 
 			size = 15,
-			open_mapping = [[<c-\>]],
+			open_mapping = [[<C-t>]],
 			hide_numbers = true,
 			shade_filetypes = {},
 			shade_terminals = true,

@@ -10,7 +10,7 @@ return {
 		},
 		opts = {
 			window = {
-				position = "right",
+				position = "left",
 			},
 			-- fill any relevant options here
 			event_handlers = {

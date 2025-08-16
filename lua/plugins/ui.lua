@@ -1,6 +1,7 @@
 return {
 	{
 		"goolord/alpha-nvim",
+		enabled = false,
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
@@ -143,6 +144,10 @@ return {
 						"dbee",
 						"dbui",
 						"nvimtree",
+						"snacks_dashboard",
+						"snacks_notif",
+						"snacks_terminal",
+						"snacks_win",
 					},
 					callback = function()
 						vim.b.miniindentscope_disable = true
@@ -168,5 +173,17 @@ return {
 				},
 			})
 		end,
+	},
+
+	{
+		"vyfor/cord.nvim",
+		build = ":Cord update",
+		opts = {
+			-- your config goes here
+			text = {
+				title = "Cord",
+				subtitle = "Neovim config",
+			},
+		},
 	},
 }

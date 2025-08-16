@@ -38,22 +38,25 @@ return {
 		},
 		config = function()
 			-- List of LSP servers
+			local mason_servers = {
+				"lua_ls", -- Lua
+			}
+
 			local servers = {
 				"lua_ls", -- Lua
+				"dartls", -- dart
+				"vue_ls", -- vue
+				"vtsls", -- javascript/typescript
+				"gopls", -- go lang
+				"emmet_ls", -- emmet
 				"html", -- html
-				"cssls", -- Css
-				"emmet_ls", -- emmet_ls
-				-- "pyright", -- Python
-				-- "clangd", -- C/C++
-				-- "dartls", -- Dart
-				-- "ts_ls", -- javascript/typescript
-				-- "intelephense", -- PHP
-				-- "stimulus_ls", -- Stimulsoft
+				"cssls", -- css
+				"tailwindcss", -- tailwindcss
 			}
 
 			require("mason-lspconfig").setup({
 				automatic_enable = false,
-				ensure_installed = servers,
+				ensure_installed = mason_servers,
 			})
 
 			-- --Enable (broadcasting) snippet capability for completion
@@ -226,15 +229,13 @@ return {
 			})
 
 			-- activate lsp servers
-			vim.lsp.enable(servers)
+			-- vim.lsp.enable(enableServers)
+			for _k, value in pairs(servers) do
+				vim.lsp.enable(value)
+			end
 
 			-- activate individual server
-			vim.lsp.enable("dartls")
 			vim.lsp.enable("pyright")
-			vim.lsp.enable("vue_ls")
-			vim.lsp.enable("vtsls")
-			vim.lsp.enable("gopls")
-			vim.lsp.enable("tailwindcss")
 
 			-- vim lsp diagnostic
 			vim.diagnostic.config({

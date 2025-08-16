@@ -159,6 +159,8 @@ return {
 			},
 		},
 	},
+
+	-- tmux navigator
 	{
 		"christoomey/vim-tmux-navigator",
 		event = "VimEnter",
@@ -167,7 +169,7 @@ return {
 			"TmuxNavigateDown",
 			"TmuxNavigateUp",
 			"TmuxNavigateRight",
-			"TmuxNavigatePrevious",
+			-- "TmuxNavigatePrevious",
 			"TmuxNavigatorProcessList",
 		},
 		keys = {
@@ -175,7 +177,30 @@ return {
 			{ "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
 			{ "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
 			{ "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
-			{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+			-- { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
 		},
+	},
+
+	-- yankbank.nvim
+	{
+		"ptdewey/yankbank-nvim",
+		event = "VeryLazy", -- load after UI is ready, not at startup
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("yankbank").setup({
+				max_entries = 20, -- number of yanks to keep in history
+				persist = false, -- don't save history between sessions
+				ring = true, -- cycle through yanks
+				picker = {
+					type = "telescope", -- can be "telescope" or "default"
+				},
+			})
+
+			-- Optional: Keymaps
+			local map = vim.keymap.set
+			map("n", "<leader>p", "<cmd>YankBankPut<CR>", { desc = "Paste from yank history" })
+			map("n", "<leader>P", "<cmd>YankBankPutBefore<CR>", { desc = "Paste before from yank history" })
+			map("n", "<leader>y", "<cmd>YankBank<CR>", { desc = "Open yank history" })
+		end,
 	},
 }

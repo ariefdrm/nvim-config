@@ -145,7 +145,7 @@ return { -- add blink.compat
 			},
 
 			sources = {
-				default = { "lsp", "path", "snippets", "buffer", "codeium", "copilot" },
+				default = { "snippets", "lsp", "path", "buffer", "codeium", "copilot" },
 
 				per_filetype = {
 					sql = { "dadbod" },
