@@ -11,16 +11,17 @@ return {
 			renderer = {
 				group_empty = true,
 			},
-			filters = {
-				dotfiles = false,
-			},
 			actions = {
 				open_file = {
 					quit_on_open = true,
 				},
 			},
+			filters = {
+				dotfiles = true,
+			},
 		})
 	end,
+
 	keys = {
 		{ "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Toggle NvimTree" },
 	},

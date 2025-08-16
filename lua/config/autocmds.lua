@@ -31,6 +31,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	desc = "Set 4-space indentation for C# files",
 })
 
+-- Colorscheme solrized-osaka
 vim.api.nvim_create_autocmd("ColorScheme", {
 	group = autocmd_group,
 	pattern = "*",
@@ -39,7 +40,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 		local opts = {
 			options = {
 				mods = "tabs",
-				separator_style = vim.g.colors_name == "solarized-osaka" and "thin" or "slant",
+				separator_style = vim.g.colors_name == "tokyonight" and "thin" or "slant",
 				numbers = "buffer_id",
 			},
 		}
@@ -55,3 +56,11 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.bo.filetype = "php" -- Treat Blade files as PHP for syntax highlighting
 	end,
 })
+
+-- -- blade using html lsp
+-- vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+-- 	pattern = "*.blade.php",
+-- 	callback = function()
+-- 		vim.bo.filetype = "html"
+-- 	end,
+-- })

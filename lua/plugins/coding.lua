@@ -65,13 +65,19 @@ return {
 					css = { "prettier", "prettierd" },
 					vue = { "prettier", "prettierd" },
 					javascript = { "prettier", "prettierd" },
+					javascriptreact = { "prettier", "prettierd" },
 					typescript = { "prettier", "prettierd" },
+					typescriptreact = { "prettier", "prettierd" },
+					scss = { "prettier", "prettierd" },
+					jsx = { "prettier", "prettierd" },
 					csharp = { "csharpier" },
 					cpp = { "clang-format" },
 					lua = { "stylua" },
 					python = { "black", "isort" },
 					dart = { "dart_format" },
-					php = { "intelephense" },
+					php = { "php-cs-fixer" },
+					blade = { "blade-formatter" },
+					go = { "gofmt" },
 				},
 				format_after_save = {
 					timeout_ms = 1000, -- Set a timeout for formatting
@@ -113,6 +119,88 @@ return {
 					lint.try_lint()
 				end,
 			})
+		end,
+	},
+
+	-- Windsurf
+	{
+		"Exafunction/windsurf.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			-- "hrsh7th/nvim-cmp",
+		},
+		config = function()
+			require("codeium").setup({})
+		end,
+	},
+
+	-- Copilot
+	{
+		"zbirenbaum/copilot.lua",
+		enabled = false,
+		cmd = "Copilot",
+		build = ":Copilot auth",
+		event = "BufReadPost",
+		opts = {
+			suggestion = {
+				enabled = not vim.g.ai_cmp,
+				auto_trigger = true,
+				hide_during_completion = vim.g.ai_cmp,
+				keymap = {
+					accept = false, -- handled by nvim-cmp / blink.cmp
+					next = "<M-]>",
+					prev = "<M-[>",
+				},
+			},
+			panel = { enabled = false },
+			filetypes = {
+				markdown = true,
+				help = true,
+			},
+		},
+	},
+
+	-- tmux navigator
+	{
+		"christoomey/vim-tmux-navigator",
+		event = "VimEnter",
+		cmd = {
+			"TmuxNavigateLeft",
+			"TmuxNavigateDown",
+			"TmuxNavigateUp",
+			"TmuxNavigateRight",
+			-- "TmuxNavigatePrevious",
+			"TmuxNavigatorProcessList",
+		},
+		keys = {
+			{ "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+			{ "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+			{ "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+			{ "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+			-- { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+		},
+	},
+
+	-- yankbank.nvim
+	{
+		"ptdewey/yankbank-nvim",
+		event = "VeryLazy", -- load after UI is ready, not at startup
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("yankbank").setup({
+				max_entries = 20, -- number of yanks to keep in history
+				persist = false, -- don't save history between sessions
+				ring = true, -- cycle through yanks
+				picker = {
+					type = "telescope", -- can be "telescope" or "default"
+				},
+			})
+
+			-- Optional: Keymaps
+			local map = vim.keymap.set
+			map("n", "<leader>p", "<cmd>YankBankPut<CR>", { desc = "Paste from yank history" })
+			map("n", "<leader>P", "<cmd>YankBankPutBefore<CR>", { desc = "Paste before from yank history" })
+			map("n", "<leader>y", "<cmd>YankBank<CR>", { desc = "Open yank history" })
 		end,
 	},
 }
