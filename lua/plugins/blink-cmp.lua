@@ -74,7 +74,8 @@ return { -- add blink.compat
 					["<Tab>"] = { "show_and_insert", "select_next" },
 					["<S-Tab>"] = { "show_and_insert", "select_prev" },
 					["<C-l>"] = { "show" },
-					["<CR>"] = { "accept", "accept_and_enter", "fallback" }, --{ "accept", "fallback" },
+					["<C-k>"] = { "select_and_accept" },
+					["<CR>"] = { "accept_and_enter", "fallback" }, --{ "accept", "fallback" },
 				},
 				completion = { menu = { auto_show = true }, ghost_text = { enabled = true } },
 			},
@@ -93,7 +94,7 @@ return { -- add blink.compat
 				},
 
 				-- trigger
-				trigger = {
+				--[[ trigger = {
 					show_on_insert_on_trigger_character = true,
 					show_on_x_blocked_trigger_characters = {
 						"'",
@@ -102,7 +103,7 @@ return { -- add blink.compat
 						"{",
 						"[",
 					},
-				},
+				}, ]]
 
 				menu = {
 					-- auto_show = true,
