@@ -92,57 +92,6 @@ return { -- add blink.compat
 					show_with_menu = true,
 					show_without_menu = true,
 				},
-
-				-- trigger
-				--[[ trigger = {
-					show_on_insert_on_trigger_character = true,
-					show_on_x_blocked_trigger_characters = {
-						"'",
-						'"',
-						"(",
-						"{",
-						"[",
-					},
-				}, ]]
-
-				menu = {
-					-- auto_show = true,
-					draw = {
-						components = {
-							kind_icon = {
-								text = function(ctx)
-									local icon = ctx.kind_icon
-									if vim.tbl_contains({ "Path" }, ctx.source_name) then
-										local dev_icon, _ = require("nvim-web-devicons").get_icon(ctx.label)
-										if dev_icon then
-											icon = dev_icon
-										end
-									else
-										icon = require("lspkind").symbolic(ctx.kind, {
-											mode = "symbol",
-										})
-									end
-
-									return icon .. ctx.icon_gap
-								end,
-
-								-- Optionally, use the highlight groups from nvim-web-devicons
-								-- You can also add the same function for `kind.highlight` if you want to
-								-- keep the highlight groups in sync with the icons.
-								highlight = function(ctx)
-									local hl = ctx.kind_hl
-									if vim.tbl_contains({ "Path" }, ctx.source_name) then
-										local dev_icon, dev_hl = require("nvim-web-devicons").get_icon(ctx.label)
-										if dev_icon then
-											hl = dev_hl
-										end
-									end
-									return hl
-								end,
-							},
-						},
-					},
-				},
 			},
 
 			sources = {
@@ -158,7 +107,7 @@ return { -- add blink.compat
 					copilot = {
 						name = "copilot",
 						module = "blink-copilot",
-						score_offset = 99,
+						score_offset = 100,
 						async = true,
 					},
 					lazydev = {
@@ -177,24 +126,4 @@ return { -- add blink.compat
 			fuzzy = { implementation = "prefer_rust_with_warning" },
 		},
 	},
-
-	-- {
-	-- 	"github/copilot.vim",
-	-- 	cmd = "Copilot",
-	-- 	event = "BufWinEnter",
-	-- 	init = function()
-	-- 		vim.g.copilot_no_maps = true
-	-- 	end,
-	-- 	config = function()
-	-- 		-- Block the normal Copilot suggestions
-	-- 		vim.api.nvim_create_augroup("github_copilot", { clear = true })
-	-- 		vim.api.nvim_create_autocmd({ "FileType", "BufUnload" }, {
-	-- 			group = "github_copilot",
-	-- 			callback = function(args)
-	-- 				vim.fn["copilot#On" .. args.event]()
-	-- 			end,
-	-- 		})
-	-- 		vim.fn["copilot#OnFileType"]()
-	-- 	end,
-	-- },
 }

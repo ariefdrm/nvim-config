@@ -29,7 +29,7 @@ keymap("n", "<leader>sh", "<C-w>s", opts) -- Split window horizontally
 -- keymap("n", "<leader>ef", ":Ex<CR>", opts)
 
 -- Nvim tree
--- keymap("n", "<leader>e", ":Neotree reveal<CR>", opts)
+keymap("n", "<leader>e", ":Neotree reveal<CR>", opts)
 -- keymap("n", "<leader>e", ":NvimTreeOpen<CR>", opts) -- nvim tree
 
 -- Mapping/Keybindings for bufferline
@@ -54,7 +54,13 @@ keymap("n", "+", "<C-a>", opts) -- Increment
 keymap("n", "-", "<C-x>", opts) -- Decrement
 
 -- Inc-Rename
-keymap("n", "<leader>rn", ":IncRename ", opts)
+-- keymap("n", "<leader>rn", ":IncRename ", opts)
+--[[ vim.keymap.set("n", "<leader>rn", function()
+  return ":IncRename " .. vim.fn.expand("<cword>")
+end, { expr = true }) ]]
+-- keymap("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename" })
+keymap("n", "<leader>rn", '<cmd>lua require("renamer").rename()<cr>', opts)
+keymap("v", "<leader>rn", '<cmd>lua require("renamer").rename()<cr>', opts)
 
 -- ToggleTerm
 -- keymap("n", "<leader>tf", "<cmd>ToggleTerm <CR>", opts) -- Open terminal

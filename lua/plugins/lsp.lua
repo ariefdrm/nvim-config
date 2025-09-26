@@ -23,6 +23,7 @@ return {
 			require("mason-tool-installer").setup({
 				ensure_installed = {
 					"prettier",
+					"stylua",
 				},
 			})
 		end,
@@ -228,14 +229,30 @@ return {
 				},
 			})
 
+			vim.lsp.config("rust_analyzer", {
+				cmd = { "rust-analyzer" },
+				filetypes = { "rust" },
+				settings = {
+					["rust-analyzer"] = {
+						cargo = {
+							loadOutDirsFromCheck = true,
+						},
+						diagnostics = {
+							enable = true,
+						},
+					},
+				},
+			})
+
 			-- activate lsp servers
 			-- vim.lsp.enable(enableServers)
-			for _k, value in pairs(servers) do
+			for _, value in pairs(servers) do
 				vim.lsp.enable(value)
 			end
 
 			-- activate individual server
 			vim.lsp.enable("pyright")
+			vim.lsp.enable("rust_analyzer")
 
 			-- vim lsp diagnostic
 			vim.diagnostic.config({
@@ -278,7 +295,7 @@ return {
 			keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 			keymap("n", "gr", vim.lsp.buf.references, opts)
 			keymap("n", "gl", vim.diagnostic.open_float, opts)
-			keymap("n", "<leader>dl", vim.diagnostic.setloclist, opts)
+			keymap("n", "<leader>dL", vim.diagnostic.setloclist, opts)
 		end,
 	},
 
@@ -313,6 +330,7 @@ return {
 	-- laravel.nvim
 	{
 		"adalessa/laravel.nvim",
+		enabled = false,
 		dependencies = {
 			-- "tpope/vim-dotenv",
 			"nvim-telescope/telescope.nvim",
@@ -341,5 +359,13 @@ return {
 				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
 			},
 		},
+	},
+
+	-- rust
+	{
+		"mrcjkb/rustaceanvim",
+		enabled = false,
+		version = "^6", -- Recommended
+		lazy = false, -- This plugin is already lazy
 	},
 }

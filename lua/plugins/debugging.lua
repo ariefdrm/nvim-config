@@ -58,13 +58,45 @@ return {
 			dap.configurations.c = dap.configurations.cpp
 			dap.configurations.rust = dap.configurations.cpp
 
+			-- javascript / typescript debugger
+			dap.adapters["dap-vscode-js"] = {
+				debugger_path = vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter",
+				adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal" },
+			}
+
+			dap.adapters["pwa-node"] = {
+				type = "server",
+				host = "localhost",
+				port = "${port}",
+				executable = {
+					command = "node",
+					-- 💀 Make sure to update this path to point to your installation
+					args = {
+						"/home/arief/.local/share/nvim/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js",
+						"${port}",
+					},
+				},
+			}
+
+			dap.configurations.javascript = {
+				{
+					type = "pwa-node",
+					request = "launch",
+					name = "Launch file",
+					program = "${file}",
+					cwd = "${workspaceFolder}",
+				},
+			}
+
+			dap.configurations.typescript = dap.configurations.javascript
+
 			-- keymaps
 			vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, {})
 			vim.keymap.set("n", "<leader>dc", dap.continue, {})
 			vim.keymap.set("n", "<leader>ds", dap.step_over, {})
 			vim.keymap.set("n", "<leader>di", dap.step_into, {})
 			vim.keymap.set("n", "<leader>do", dap.step_out, {})
-			-- vim.keymap.set("n", "<leader>dl", dap.run_last, {})
+			vim.keymap.set("n", "<leader>dl", dap.run_last, {})
 			vim.keymap.set("n", "<leader>dt", dap.terminate, {})
 		end,
 	},
