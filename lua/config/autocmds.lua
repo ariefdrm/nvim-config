@@ -40,7 +40,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 		local opts = {
 			options = {
 				mods = "tabs",
-				separator_style = vim.g.colors_name == "tokyonight" and "thin" or "slant",
+				separator_style = vim.g.colors_name == "tokyonight" and "slant" or "thin",
 				numbers = "buffer_id",
 			},
 		}

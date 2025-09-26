@@ -10,7 +10,7 @@ return {
 			local alpha = require("alpha")
 			local dashboard = require("alpha.themes.startify")
 
-			dashboard.section.header.val = {
+			local heading1 = {
 				[[                                                                       ]],
 				[[                                                                       ]],
 				[[                                                                       ]],
@@ -27,6 +27,8 @@ return {
 				[[                                                                       ]],
 				[[                                                                       ]],
 			}
+
+			dashboard.section.header.val = heading1
 
 			alpha.setup(dashboard.opts)
 		end,
@@ -57,7 +59,7 @@ return {
 						bottom_search = true, -- use a classic bottom cmdline for search
 						command_pallete = true, -- positon the cmdline and popupmenu together
 						long_message_to_split = true, -- long message will be sent to a split
-						inc_rename = false, -- enables an input dialog for inc-rename.nvim
+						inc_rename = true, -- enables an input dialog for inc-rename.nvim
 						lsp_doc_border = false, -- add a border to hover docs and signatures help
 					},
 				},
@@ -185,5 +187,55 @@ return {
 				subtitle = "Neovim config",
 			},
 		},
+	},
+
+	-- transparent
+	{
+		"xiyaowong/transparent.nvim",
+		config = function()
+			local transparent = require("transparent")
+
+			transparent.setup({
+				-- table: default groups
+				groups = {
+					"Normal",
+					"NormalNC",
+					"Comment",
+					"Constant",
+					"Special",
+					"Identifier",
+					"Statement",
+					"PreProc",
+					"Type",
+					"Underlined",
+					"Todo",
+					"String",
+					"Function",
+					"Conditional",
+					"Repeat",
+					"Operator",
+					"Structure",
+					"LineNr",
+					"NonText",
+					"SignColumn",
+					"CursorLine",
+					"CursorLineNr",
+					"StatusLine",
+					"StatusLineNC",
+					"EndOfBuffer",
+				},
+				-- table: additional groups that should be cleared
+				extra_groups = {},
+				-- table: groups you don't want to clear
+				exclude_groups = {},
+				-- function: code to be executed after highlight groups are cleared
+				-- Also the user event "TransparentClear" will be triggered
+				on_clear = function() end,
+			})
+
+			transparent.clear_prefix("BufferLine")
+			transparent.clear_prefix("Neotree")
+			transparent.clear_prefix("telescope")
+		end,
 	},
 }

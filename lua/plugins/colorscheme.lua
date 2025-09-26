@@ -117,11 +117,7 @@ return {
 					cmp = true,
 					gitsigns = true,
 					telescope = true,
-					nvimtree = {
-						enabled = true,
-						show_root = true,
-						transparent_panel = false,
-					},
+					nvimtree = true,
 					which_key = true,
 					indent_blankline = {
 						enabled = true,

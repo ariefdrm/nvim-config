@@ -78,6 +78,7 @@ return {
 					php = { "php-cs-fixer" },
 					blade = { "blade-formatter" },
 					go = { "gofmt" },
+					rust = { "rustfmt" },
 				},
 				format_after_save = {
 					timeout_ms = 1000, -- Set a timeout for formatting
@@ -102,6 +103,7 @@ return {
 			"nvim-tree/nvim-web-devicons",
 		},
 		opts = {
+			events = { "BufWritePost", "BufReadPost", "InsertLeave" },
 			use_diagnostic_signs = true,
 		},
 		config = function()
@@ -134,24 +136,22 @@ return {
 		end,
 	},
 
-	-- Copilot
+	-- renamer
+	{
+		"filipdutescu/renamer.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("renamer").setup({})
+		end,
+	},
+
+	-- copilot
 	{
 		"zbirenbaum/copilot.lua",
-		enabled = false,
 		cmd = "Copilot",
-		build = ":Copilot auth",
-		event = "BufReadPost",
+		event = "InsertEnter",
 		opts = {
-			suggestion = {
-				enabled = not vim.g.ai_cmp,
-				auto_trigger = true,
-				hide_during_completion = vim.g.ai_cmp,
-				keymap = {
-					accept = false, -- handled by nvim-cmp / blink.cmp
-					next = "<M-]>",
-					prev = "<M-[>",
-				},
-			},
+			suggestion = { enabled = false },
 			panel = { enabled = false },
 			filetypes = {
 				markdown = true,

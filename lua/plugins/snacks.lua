@@ -11,6 +11,7 @@ return {
 		bigfile = { enabled = false },
 		dashboard = {
 			enabled = true,
+			-- example = "advanced",
 			sections = {
 				{ section = "header" },
 				--[[ {
