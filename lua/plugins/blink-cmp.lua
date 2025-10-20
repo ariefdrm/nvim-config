@@ -71,11 +71,14 @@ return { -- add blink.compat
 
 			cmdline = {
 				keymap = {
-					["<Tab>"] = { "show_and_insert", "select_next" },
-					["<S-Tab>"] = { "show_and_insert", "select_prev" },
+					-- ["<Tab>"] = { "show_and_insert", "select_next" },
+					-- ["<S-Tab>"] = { "show_and_insert", "select_prev" },
+
+					["<Tab>"] = { "show_and_insert_or_accept_single", "select_next" },
+					["<S-Tab>"] = { "show_and_insert_or_accept_single", "select_prev" },
 					["<C-l>"] = { "show" },
 					["<C-k>"] = { "select_and_accept" },
-					["<CR>"] = { "accept_and_enter", "fallback" }, --{ "accept", "fallback" },
+					["<CR>"] = { "select_and_accept", "fallback" }, --{ "accept", "fallback" },
 				},
 				completion = { menu = { auto_show = true }, ghost_text = { enabled = true } },
 			},

@@ -148,6 +148,7 @@ return {
 	-- copilot
 	{
 		"zbirenbaum/copilot.lua",
+		enabled = false,
 		cmd = "Copilot",
 		event = "InsertEnter",
 		opts = {
@@ -203,4 +204,24 @@ return {
 			map("n", "<leader>y", "<cmd>YankBank<CR>", { desc = "Open yank history" })
 		end,
 	},
+
+	{
+		"CopilotC-Nvim/CopilotChat.nvim",
+		dependencies = {
+			{ "nvim-lua/plenary.nvim", branch = "master" },
+		},
+		build = "make tiktoken",
+		opts = {
+			-- See Configuration section for options
+		},
+	},
+
+	-- {
+	-- 	"nvzone/floaterm",
+	-- 	dependencies = "nvzone/volt",
+	-- 	opts = {
+	-- 		mappings = {},
+	-- 	},
+	-- 	cmd = "FloatermToggle",
+	-- },
 }

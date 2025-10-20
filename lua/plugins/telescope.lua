@@ -9,6 +9,7 @@ return {
 				"nvim-telescope/telescope-fzf-native.nvim",
 				build = "make",
 			},
+			"junegunn/fzf.vim",
 		}, -- telescope dependency
 		config = function()
 			-- load telescope config
