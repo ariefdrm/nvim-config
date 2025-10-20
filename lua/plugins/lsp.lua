@@ -159,6 +159,13 @@ return {
 			-- css
 			vim.lsp.config("cssls", {
 				filetypes = { "css", "scss", "less", "html", "vue" },
+				settings = {
+					css = {
+						lint = {
+							unknownAtRules = "ignore",
+						},
+					},
+				},
 			})
 
 			-- javascript / typescript
@@ -328,7 +335,7 @@ return {
 	},
 
 	-- laravel.nvim
-	{
+	--[[ {
 		"adalessa/laravel.nvim",
 		enabled = false,
 		dependencies = {
@@ -346,7 +353,7 @@ return {
 		event = { "VeryLazy" },
 		opts = {},
 		config = true,
-	},
+	}, ]]
 
 	-- lazydev.nvim
 	{
@@ -359,13 +366,5 @@ return {
 				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
 			},
 		},
-	},
-
-	-- rust
-	{
-		"mrcjkb/rustaceanvim",
-		enabled = false,
-		version = "^6", -- Recommended
-		lazy = false, -- This plugin is already lazy
 	},
 }

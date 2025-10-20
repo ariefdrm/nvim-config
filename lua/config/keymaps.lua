@@ -28,10 +28,6 @@ keymap("n", "<leader>sv", "<C-w>v", opts) -- Split window vertically
 keymap("n", "<leader>sh", "<C-w>s", opts) -- Split window horizontally
 -- keymap("n", "<leader>ef", ":Ex<CR>", opts)
 
--- Nvim tree
-keymap("n", "<leader>e", ":Neotree reveal<CR>", opts)
--- keymap("n", "<leader>e", ":NvimTreeOpen<CR>", opts) -- nvim tree
-
 -- Mapping/Keybindings for bufferline
 keymap("n", "<TAB>", ":BufferLineCycleNext<CR>", opts) -- Move next buffer
 keymap("n", "<S-TAB>", ":BufferLineCyclePrev<CR>", opts) -- Move prev buffer
@@ -54,17 +50,8 @@ keymap("n", "+", "<C-a>", opts) -- Increment
 keymap("n", "-", "<C-x>", opts) -- Decrement
 
 -- Inc-Rename
--- keymap("n", "<leader>rn", ":IncRename ", opts)
---[[ vim.keymap.set("n", "<leader>rn", function()
-  return ":IncRename " .. vim.fn.expand("<cword>")
-end, { expr = true }) ]]
--- keymap("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename" })
 keymap("n", "<leader>rn", '<cmd>lua require("renamer").rename()<cr>', opts)
 keymap("v", "<leader>rn", '<cmd>lua require("renamer").rename()<cr>', opts)
-
--- ToggleTerm
--- keymap("n", "<leader>tf", "<cmd>ToggleTerm <CR>", opts) -- Open terminal
--- keymap("t", "<Esc>", "<C-\\><C-n><cmd>ToggleTerm<CR>", opts) -- Keybinding to close terminal with Esc
 
 -- git signs
 keymap("n", "<leader>gs", ":Gitsigns<CR>", opts)
@@ -75,3 +62,6 @@ keymap("n", "<leader>gt", ":Gitsigns toggle_current_line_blame<CR>", opts)
 -- lazy git
 keymap("n", "<leader>lg", ":LazyGit<CR>", opts)
 keymap("t", "<Esc>", "<C-\\><C-n><cmd>q<CR>", opts) -- exit lazygit with esc
+
+--floaterm
+keymap("n", "<C-p>", "<cmd>FloatermToggle<cr>", { desc = "Toggle terminal" })

@@ -1,7 +1,7 @@
 return {
 	{
 		"goolord/alpha-nvim",
-		enabled = false,
+		enabled = true,
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 		},
@@ -192,6 +192,7 @@ return {
 	-- transparent
 	{
 		"xiyaowong/transparent.nvim",
+		enabled = false,
 		config = function()
 			local transparent = require("transparent")
 
@@ -235,6 +236,7 @@ return {
 
 			transparent.clear_prefix("BufferLine")
 			transparent.clear_prefix("Neotree")
+			transparent.clear_prefix("NvimTree")
 			transparent.clear_prefix("telescope")
 		end,
 	},
