@@ -40,18 +40,23 @@ return {
 			-- List of LSP servers
 			local servers = {
 				"lua_ls",
-				-- "cssls", -- Css
-				-- "emmet_ls", -- emmet_ls
+				"cssls", -- Css
+				"emmet_ls", -- emmet_ls
 				-- "pyright", -- Python
 				-- "clangd", -- C/C++
 				-- "dartls", -- Dart
-				-- "volar", -- Vue
-				-- "intelephense",
+				"vue_ls",
+				"intelephense",
+				"laravel_ls",
+				"tailwindcss",
+				"vtsls",
 			}
 
 			require("mason-lspconfig").setup({
 				automatic_enable = false,
-				ensure_installed = servers,
+				ensure_installed = {
+					"lua_ls",
+				},
 			})
 			--Enable (broadcasting) snippet capability for completion
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -114,8 +119,8 @@ return {
 			vim.lsp.enable(servers)
 
 			-- activate individual server
-			vim.lsp.enable("dartls")
-			vim.lsp.enable("pyright")
+			-- vim.lsp.enable("dartls")
+			-- vim.lsp.enable("pyright")
 
 			-- vim lsp diagnostic
 			vim.diagnostic.config({
@@ -164,23 +169,30 @@ return {
 	},
 
 	-- typescript-tools
-	{
-		"nvim-flutter/flutter-tools.nvim",
-		lazy = false,
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"stevearc/dressing.nvim", -- optional for vim.ui.select
-		},
-		config = true,
-		opts = {
-			ui = {
-				border = "rounded",
-			},
-			widget_guides = {
-				enabled = true,
-			},
-		},
-	},
+	-- {
+	-- 	"pmizio/typescript-tools.nvim",
+	-- 	dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+	-- 	opts = {},
+	-- },
+
+	-- flutter
+	-- {
+	-- 	"nvim-flutter/flutter-tools.nvim",
+	-- 	lazy = false,
+	-- 	dependencies = {
+	-- 		"nvim-lua/plenary.nvim",
+	-- 		"stevearc/dressing.nvim", -- optional for vim.ui.select
+	-- 	},
+	-- 	config = true,
+	-- 	opts = {
+	-- 		ui = {
+	-- 			border = "rounded",
+	-- 		},
+	-- 		widget_guides = {
+	-- 			enabled = true,
+	-- 		},
+	-- 	},
+	-- },
 
 	-- Codeium
 	{
