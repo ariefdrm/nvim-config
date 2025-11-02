@@ -25,6 +25,13 @@ return {
 					end,
 				},
 			},
+			filesystem = {
+				filtered_items = {
+					visible = true, -- Set to true to show filtered items (including hidden files)
+					hide_dotfiles = false, -- Explicitly set to false to always show dotfiles
+					hide_gitignored = true, -- You can choose whether to hide gitignored files or not
+				},
+			},
 		},
 	},
 

@@ -63,13 +63,14 @@ return {
 				formatters_by_ft = {
 					html = { "prettier", "prettierd" },
 					css = { "prettier", "prettierd" },
-					vue = { "prettier", "prettierd" },
 					javascript = { "prettier", "prettierd" },
 					javascriptreact = { "prettier", "prettierd" },
 					typescript = { "prettier", "prettierd" },
 					typescriptreact = { "prettier", "prettierd" },
 					scss = { "prettier", "prettierd" },
 					jsx = { "prettier", "prettierd" },
+					vue = { "prettier", "prettierd" },
+					json = { "prettier", "prettierd" },
 					csharp = { "csharpier" },
 					cpp = { "clang-format" },
 					lua = { "stylua" },
@@ -213,6 +214,20 @@ return {
 		build = "make tiktoken",
 		opts = {
 			-- See Configuration section for options
+		},
+	},
+
+	-- comment nvim
+	{
+		{
+			"numToStr/Comment.nvim",
+			events = "BufEnter",
+			dependencies = {
+				"JoosepAlviste/nvim-ts-context-commentstring",
+			},
+			opts = {
+				-- add any options here
+			},
 		},
 	},
 
