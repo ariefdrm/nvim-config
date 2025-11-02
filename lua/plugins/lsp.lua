@@ -39,13 +39,9 @@ return {
 		},
 		config = function()
 			-- List of LSP servers
-			local mason_servers = {
-				"lua_ls", -- Lua
-			}
-
 			local servers = {
 				"lua_ls", -- Lua
-				"dartls", -- dart
+				-- "dartls", -- dart
 				"vue_ls", -- vue
 				"vtsls", -- javascript/typescript
 				"gopls", -- go lang
@@ -57,7 +53,13 @@ return {
 
 			require("mason-lspconfig").setup({
 				automatic_enable = false,
-				ensure_installed = mason_servers,
+				ensure_installed = {
+					"lua_ls",
+					"html",
+					"cssls",
+					"emmet_ls",
+					"vtsls",
+				},
 			})
 
 			-- --Enable (broadcasting) snippet capability for completion
@@ -99,7 +101,6 @@ return {
 
 			local vue_language_server_path = vim.fn.expand("$MASON/packages")
 				.. "/vue-language-server"
-				.. "/node_modules/@vue/language-server"
 				.. "/node_modules/@vue/language-server"
 
 			local vue_plugin = {
@@ -305,55 +306,6 @@ return {
 			keymap("n", "<leader>dL", vim.diagnostic.setloclist, opts)
 		end,
 	},
-
-	-- typescript-tools
-	{
-		"pmizio/typescript-tools.nvim",
-		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-		enabled = false,
-		config = function()
-			require("typescript-tools").setup({
-				filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact", "html", "vue" },
-				settings = {
-					single_file_support = false,
-					tsserver_plugins = {
-						"@vue/typescript-plugin",
-					},
-
-					tsserver_file_preferences = {
-						includeInlayParameterNameHints = "all",
-						includeCompletionsForModuleExports = true,
-						quotePreference = "auto",
-					},
-					tsserver_format_options = {
-						allowIncompleteCompletions = false,
-						allowRenameOfImportPath = false,
-					},
-				},
-			})
-		end,
-	},
-
-	-- laravel.nvim
-	--[[ {
-		"adalessa/laravel.nvim",
-		enabled = false,
-		dependencies = {
-			-- "tpope/vim-dotenv",
-			"nvim-telescope/telescope.nvim",
-			"MunifTanjim/nui.nvim",
-			"kevinhwang91/promise-async",
-		},
-		cmd = { "Laravel" },
-		keys = {
-			{ "<leader>la", ":Laravel artisan<cr>" },
-			{ "<leader>lr", ":Laravel routes<cr>" },
-			{ "<leader>lm", ":Laravel related<cr>" },
-		},
-		event = { "VeryLazy" },
-		opts = {},
-		config = true,
-	}, ]]
 
 	-- lazydev.nvim
 	{
